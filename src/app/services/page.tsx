@@ -59,8 +59,43 @@ const services = [
 ]
 
 export default function ServicesPage() {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What industrial services does Rukun Al Zuhab provide?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rukun Al Zuhab provides comprehensive industrial solutions including global procurement, multi-point quality assurance, regional logistics with a dedicated fleet, and technical engineering support. We have been operational since 1999 with a 98% client retention rate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does Rukun Al Zuhab ensure product quality?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Every shipment undergoes a rigorous multi-point inspection protocol to ensure 100% compliance with Saudi industrial standards and regulatory requirements."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Rukun Al Zuhab offer technical support for installations?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we provide engineering-led consultation from initial product selection through to installation and long-term operational maintenance."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       {/* Hero Section - Atmospheric & Technical */}
       <section className="relative h-[65vh] flex items-center overflow-hidden border-b border-gray-100">
         <div className="absolute inset-0 z-0">

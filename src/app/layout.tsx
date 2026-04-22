@@ -66,12 +66,40 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Rukun Al Zuhab Trading Co",
+    "url": "https://rukun-alzuhab.com",
+    "logo": "https://rukun-alzuhab.com/logo.jpg",
+    "description": "Leading trading company in Saudi Arabia specializing in building materials, hardware, safety equipment, and electrical supplies since 1999.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "King Fahd Road, Olaya District",
+      "addressLocality": "Riyadh",
+      "addressCountry": "SA"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+966-11-XXX-XXXX",
+      "contactType": "customer service",
+      "areaServed": "SA",
+      "availableLanguage": ["en", "ar"]
+    }
+  };
+
   return (
     <html
       lang="en"
       dir="ltr"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
         <Header />
         <main className="flex-1">{children}</main>
