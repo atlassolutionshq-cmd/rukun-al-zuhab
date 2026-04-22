@@ -1,9 +1,23 @@
 import { Truck, FileCheck, RefreshCcw, Shield, Clock, ArrowUpRight, ArrowRight, Cog } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import type { Metadata } from "next"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+
+export const metadata: Metadata = {
+  title: "Industrial Services & Solutions",
+  description: "Comprehensive industrial services in Saudi Arabia including procurement, quality assurance, regional logistics, and technical support. We power the Kingdom's critical infrastructure.",
+  keywords: [
+    "industrial procurement",
+    "quality assurance Saudi Arabia",
+    "industrial logistics",
+    "technical support",
+    "supply chain management",
+    "Saudi Arabia trading services",
+  ],
+}
 
 const services = [
   {

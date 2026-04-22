@@ -58,6 +58,7 @@ export default function HomePage() {
 
         <div className="container-wide w-full relative z-20">
           <div className="max-w-4xl space-y-12">
+            <h1 className="sr-only">Rukun Al Zuhab Trading Co - Leading Industrial Solutions in Saudi Arabia</h1>
             <div className="inline-flex items-center gap-4 px-1 py-1 group cursor-default">
               <div className="h-px w-8 bg-red/50 group-hover:w-12 transition-all duration-500" />
               <span className="text-[10px] font-bold tracking-[0.4em] text-red/80 uppercase">
@@ -66,11 +67,11 @@ export default function HomePage() {
             </div>
             
             <div className="space-y-8">
-              <h1 className="text-5xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight">
+              <div className="text-5xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight">
                 Engineering the <br />
                 <span className="text-red italic font-medium">foundations</span> of <br />
                 Kingdom industry.
-              </h1>
+              </div>
               
               <p className="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed font-normal">
                 Strategic procurement and distribution of high-performance 

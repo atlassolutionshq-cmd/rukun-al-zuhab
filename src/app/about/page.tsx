@@ -1,8 +1,21 @@
 import Image from "next/image"
+import type { Metadata } from "next"
 import { CheckCircle, Award, Users, Target, Eye, ArrowRight } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description: "Established in 1999, Rukun Al Zuhab Trading Co is a trusted industrial partner in Saudi Arabia, specializing in premium building materials and technical systems.",
+  keywords: [
+    "about Rukun Al Zuhab",
+    "Saudi Arabia trading history",
+    "industrial legacy",
+    "Ahmed Al-Rashid CEO",
+    "Mohammed Al-Zuhab COO",
+  ],
+}
 
 const leadership = [
   {
@@ -189,9 +202,9 @@ export default function AboutPage() {
       {/* Final Call to Action */}
       <section className="py-40 border-t border-gray-100">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 text-center space-y-12">
-          <h2 className="text-5xl md:text-7xl font-bold text-blue tracking-tighter">
+          <h3 className="text-5xl md:text-7xl font-bold text-blue tracking-tighter">
             Build the <span className="text-red italic">infrastructure</span> of tomorrow.
-          </h2>
+          </h3>
           <div className="flex justify-center pt-8">
             <button className="group text-[11px] font-bold text-blue uppercase tracking-widest inline-flex items-center gap-6 py-6 px-12 bg-gray-50 rounded-full hover:bg-red hover:text-white transition-all duration-500 shadow-sm hover:shadow-xl">
               Connect with our desk <ArrowRight className="h-4 w-4 group-hover:translate-x-2 transition-transform" />
