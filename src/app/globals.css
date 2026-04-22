@@ -15,29 +15,29 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.12 0.02 260);
   
-  /* Primary: Logo Red */
-  --primary: oklch(0.6 0.22 25);
+  /* Primary: Refined Industrial Red */
+  --primary: oklch(0.52 0.19 25);
   --primary-foreground: oklch(0.98 0 0);
   
-  /* Secondary: Logo Blue */
-  --secondary: oklch(0.45 0.18 260);
+  /* Secondary: Deep Industrial Blue */
+  --secondary: oklch(0.25 0.06 260);
   --secondary-foreground: oklch(0.98 0 0);
   
   --muted: oklch(0.97 0.005 260);
-  --muted-foreground: oklch(0.45 0.02 260);
+  --muted-foreground: oklch(0.25 0.02 260);
   
-  /* Accent: Bright Logo Red */
-  --accent: oklch(0.6 0.22 25);
+  /* Accent: Refined Industrial Red */
+  --accent: oklch(0.52 0.19 25);
   --accent-foreground: oklch(0.98 0 0);
   
-  --destructive: oklch(0.5 0.2 25);
+  --destructive: oklch(0.45 0.19 25);
   --border: oklch(0.92 0.005 260);
   --input: oklch(0.92 0.005 260);
-  --ring: oklch(0.6 0.22 25 / 0.5);
+  --ring: oklch(0.52 0.19 25 / 0.5);
   
   /* Custom Brand Variables */
-  --brand-red: oklch(0.6 0.22 25);
-  --brand-blue: oklch(0.45 0.18 260);
+  --brand-red: oklch(0.52 0.19 25);
+  --brand-blue: oklch(0.25 0.06 260);
   
   --radius: 0.5rem;
 }
@@ -102,10 +102,10 @@
     @apply bg-white/10 backdrop-blur-2xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-all hover:bg-white/15 hover:border-white/30;
   }
   .glow-primary {
-    @apply shadow-[0_0_30px_rgba(var(--brand-red),0.2)] hover:shadow-[0_0_50px_rgba(var(--brand-red),0.4)];
+    @apply shadow-[0_0_30px_var(--brand-red)/0.2] hover:shadow-[0_0_50px_var(--brand-red)/0.4];
   }
   .glow-secondary {
-    @apply shadow-[0_0_30px_rgba(var(--brand-blue),0.2)] hover:shadow-[0_0_50px_rgba(var(--brand-blue),0.4)];
+    @apply shadow-[0_0_30px_var(--brand-blue)/0.2] hover:shadow-[0_0_50px_var(--brand-blue)/0.4];
   }
   .text-gradient-brand {
     @apply bg-gradient-to-r from-blue to-red bg-clip-text text-transparent;
