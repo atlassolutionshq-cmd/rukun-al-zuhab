@@ -14,6 +14,7 @@ import { products, productCategories } from "@/data/products"
 const categoryIcons: Record<string, any> = {
   fiber: Cpu,
   copper: Network,
+  "copper-system": ShieldCheck,
   cabinets: Database,
   tools: Wrench,
   accessories: Settings,
@@ -130,31 +131,51 @@ export default function ProductsPage() {
                 return (
                   <div 
                     key={product.id} 
-                    className="group bg-white p-12 rounded-[2.5rem] border border-gray-100 hover:border-red/20 hover:shadow-2xl transition-all duration-500 relative flex flex-col justify-between h-[420px] overflow-hidden"
+                    className="group bg-white p-10 rounded-[2.5rem] border border-gray-100 hover:border-red/20 hover:shadow-2xl transition-all duration-500 relative flex flex-col justify-between min-h-[520px] overflow-hidden"
                   >
                     {/* Background Visual Element */}
                     <div className="absolute -right-8 -top-8 h-48 w-48 bg-blue/[0.02] rounded-full group-hover:bg-red/[0.03] transition-colors duration-700" />
                     <Icon className="absolute -right-4 -bottom-4 h-32 w-32 text-blue/[0.01] group-hover:text-red/[0.03] transition-colors duration-700" />
                     
-                    <div className="space-y-10 relative z-10">
+                    <div className="space-y-8 relative z-10">
                       <div className="flex justify-between items-start">
                         <div className="px-4 py-1.5 rounded-md bg-blue/5 border border-blue/5 text-[9px] font-bold text-blue/40 uppercase tracking-[0.3em] group-hover:text-red group-hover:border-red/10 transition-all">
                           {product.code}
                         </div>
                         <Icon className="h-5 w-5 text-blue/20 group-hover:text-red transition-colors" />
                       </div>
+
+                      {product.image && (
+                        <div className="relative w-full h-48 overflow-hidden rounded-2xl border border-gray-50 bg-gray-50/50">
+                          <Image 
+                            src={product.image} 
+                            alt={product.name}
+                            fill
+                            className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
+                          />
+                        </div>
+                      )}
                       
-                      <h3 className="text-3xl font-bold text-blue tracking-tight leading-tight group-hover:text-red transition-colors">
-                        {product.name}
-                      </h3>
+                      <div className="space-y-4">
+                        <h3 className="text-2xl font-bold text-blue tracking-tight leading-tight group-hover:text-red transition-colors line-clamp-2">
+                          {product.name}
+                        </h3>
+                        {product.description && (
+                          <p className="text-[13px] text-blue/50 leading-relaxed line-clamp-3 font-medium">
+                            {product.description}
+                          </p>
+                        )}
+                      </div>
                     </div>
 
-                    <div className="relative z-10 pt-10 border-t border-gray-50 flex items-center justify-between">
+                    <div className="relative z-10 pt-8 border-t border-gray-50 flex items-center justify-between">
                       <div className="space-y-1.5">
                         <p className="text-[9px] font-bold text-blue/20 uppercase tracking-[0.3em]">Operational Sector</p>
                         <div className="flex items-center gap-2">
                           <div className="h-1.5 w-1.5 rounded-full bg-red/40 group-hover:bg-red animate-pulse" />
-                          <p className="text-[11px] font-bold text-blue uppercase tracking-widest">{product.category}</p>
+                          <p className="text-[11px] font-bold text-blue uppercase tracking-widest">
+                            {productCategories.find(c => c.id === product.category)?.name || product.category}
+                          </p>
                         </div>
                       </div>
                       <Link 

@@ -4,10 +4,13 @@ export interface Product {
   name: string;
   category: string;
   subCategory?: string;
+  description?: string;
+  image?: string;
 }
 
 export const productCategories = [
   { id: 'all', name: 'All Products' },
+  { id: 'copper-system', name: 'Copper System' },
   { id: 'fiber', name: 'Fiber Optics' },
   { id: 'copper', name: 'Copper Networking' },
   { id: 'cabinets', name: 'Cabinets & Enclosures' },
@@ -16,6 +19,374 @@ export const productCategories = [
 ];
 
 export const products: Product[] = [
+  {
+    "id": "cs1",
+    "code": "AV-C3-UTP-IN",
+    "name": "Category 3 Unshielded Twisted Pair (UTP) cable - Indoor",
+    "category": "copper-system",
+    "description": "AVAYO unshielded 2 to 200 insulated, color coded, copper wires twisted in to pairs, cabled together and over all jacketed with PVC or with halogen free compound.",
+    "image": "/products/Category-3-Unshielded-Twisted-Pair-(UTP)-cable-Indoor.png"
+  },
+  {
+    "id": "cs2",
+    "code": "AV-C3-UTP-OUT",
+    "name": "Category 3 Unshielded Twisted Pair (UTP) cable - Outdoor",
+    "category": "copper-system",
+    "description": "AVAYO unshielded 2 to 400 insulated, color coded, copper wires twisted in to pairs, cabled together and tape wrapped, jelly filling and over all jacketed with PE compound.",
+    "image": "/products/Category-3-Unshielded-Twisted-Pair-(UTP)-cable-Outdoor.png"
+  },
+  {
+    "id": "cs3",
+    "code": "AV-C5-UTP-IN",
+    "name": "Category 5 Unshielded Twisted Pair (UTP) cable - Indoor",
+    "category": "copper-system",
+    "description": "AVAYO unshielded 2 to 200 insulated, color coded, copper wires twisted in to pairs, cabled together and over all jacketed with PVC or with halogen free compound.",
+    "image": "/products/Category-5-Unshielded-Twisted-Pair-(UTP)-cable-Indoor.png"
+  },
+  {
+    "id": "cs4",
+    "code": "AV-C5-UTP-OUT",
+    "name": "Category 5 Unshielded Twisted Pair (UTP) cable - Out Door",
+    "category": "copper-system",
+    "description": "Unshielded 2 to 400 insulated, color coded, copper wires twisted in to pairs, cabled together and tape wrapped, jelly filling and over all jacketed with PE compound.",
+    "image": "/products/Category-5-Unshielded-Twisted-Pair-(UTP)-cable-Out-Door.png"
+  },
+  {
+    "id": "cs5",
+    "code": "AV-C5E-UTP-CB",
+    "name": "Category 5e Unshielded Twisted Pair (UTP) cable",
+    "category": "copper-system",
+    "description": "AVAYO unshielded 8 insulated 4 color coded, copper wires twisted in pairs cabled together around center filler and over all jacketed with PVC or with halogen free compound.",
+    "image": ""
+  },
+  {
+    "id": "cs6",
+    "code": "AV-C5E-FTP-CB",
+    "name": "Category 5e Foiled Twisted Pair (FTP) cable",
+    "category": "copper-system",
+    "description": "8 insulated 4 color coded, copper wires twisted in pairs cabled together around a center filler over all wrapped with an aluminum foil and then jacketed with PVC or with halogen free compound.",
+    "image": "/products/Category-5e-Foiled-Twisted-Pair-(FTP)-cable.png"
+  },
+  {
+    "id": "cs7",
+    "code": "AV-C6-UTP-CB",
+    "name": "Category 6 Unshielded Twisted Pair (UTP) cable",
+    "category": "copper-system",
+    "description": "AVAYO unshielded 8 insulated 4 color coded, copper wires twisted in pairs cabled together around center filler and over all jacketed with PVC or with halogen free compound.",
+    "image": "/products/Category-6-Unshielded-Twisted-Pair-(UTP)-cable.png"
+  },
+  {
+    "id": "cs8",
+    "code": "AV-C6-FTP-CB",
+    "name": "Category 6 Foiled Twisted Pair (FTP) Cable",
+    "category": "copper-system",
+    "description": "AVAYO 8 insulated 4 color coded, copper wires twisted in pairs cabled together around a center filler over all wrapped with an aluminum foil and then jacketed with PVC or with halogen free compound.",
+    "image": "/products/Category-6-Foiled-Twisted-Pair-(FTP)-Cable.png"
+  },
+  {
+    "id": "cs9",
+    "code": "AV-C6-FFTP-CB",
+    "name": "Category 6 F/ Foiled Twisted Pair (FFTP) cable",
+    "category": "copper-system",
+    "description": "AVAYO 8 insulated 4 color coded, copper wires twisted in pairs and individually foil shield for each pair, cabled together with a tin coated drain wire and over all wrapped with an aluminum foil and jacketed with PVC or with halogen free compound.",
+    "image": "/products/Category-6-F-Foiled-Twisted-Pair-(FFTP)-cable.png"
+  },
+  {
+    "id": "cs10",
+    "code": "AV-C6-SFTP-CB",
+    "name": "Category 6 S/ Foiled Twisted Pair (S/FTP) cable",
+    "category": "copper-system",
+    "description": "AVAYO 8 insulated 4 color coded, copper wires twisted in pairs and individually foil shield for each pair, cabled together, over all wrapped with an aluminum foil and then covered with a tinned copper braid and jacketed with PVC or with halogen free compound.",
+    "image": "/products/Category-6A-S-Foiled-Twisted-Pair-(S-FTP)-cable.png"
+  },
+  {
+    "id": "cs11",
+    "code": "AV-C6A-UTP-CB",
+    "name": "Category 6A Unshielded Twisted Pair (UTP) cable",
+    "category": "copper-system",
+    "description": "AVAYO unshielded 8 insulated 4 color coded, copper wires twisted in pairs cabled together around center filler and over all jacketed with PVC or with halogen free compound.",
+    "image": "/products/Category-6A-Unshielded-Twisted-Pair-(UTP)-cable.png"
+  },
+  {
+    "id": "cs12",
+    "code": "AV-C6A-FFTP-CB",
+    "name": "Category 6A F/Foiled Twisted Pair (F/FTP) cable",
+    "category": "copper-system",
+    "description": "AVAYO 8 insulated 4 color coded, copper wires twisted in pairs and individually foil shield for each pair, cabled together with a tin coated drain wire and over all wrapped with an aluminum foil and jacketed with PVC or with halogen free compound.",
+    "image": "/products/Category-6A-F-Foiled-Twisted-Pair-(F-FTP)-cable.png"
+  },
+  {
+    "id": "cs13",
+    "code": "AV-C6A-SFTP-CB",
+    "name": "Category 6A S/Foiled Twisted Pair (S/FTP) cable",
+    "category": "copper-system",
+    "description": "AVAYO 8 insulated 4 color coded, copper wires twisted in pairs and individually foil shield for each pair, cabled together, over all wrapped with an aluminum foil and then covered with a tinned copper braid and jacketed with PVC or with halogen free compound.",
+    "image": "/products/Category-6A-S-Foiled-Twisted-Pair-(S-FTP)-cable.png"
+  },
+  {
+    "id": "cs14",
+    "code": "AV-EC6A-FTP-CB",
+    "name": "Enhanced Category 6A Foiled Twisted Pair (FTP) cable",
+    "category": "copper-system",
+    "description": "AVAYO 8 insulated 4 color coded, copper wires twisted in pairs cabled together with a rip cord, over all wrapped with an aluminum foil and jacketed with PVC or with halogen free compound.",
+    "image": "/products/Enhanced-Category-6A-Foiled-Twisted-Pair-(FTP)-cable.png"
+  },
+  {
+    "id": "cs15",
+    "code": "AV-C7-SFTP-CB",
+    "name": "Category 7 S/Foiled Twisted Pair (S/FTP) cable",
+    "category": "copper-system",
+    "description": "AVAYO 8 insulated 4 color coded, copper wires twisted in pairs and individually foil shield for each pair, cabled together, over all wrapped with an aluminum foil and then covered with a tinned copper braid and jacketed with PVC or with halogen free compound.",
+    "image": "/products/Category-7-S-Foiled-Twisted-Pair-(S-FTP)-cable.png"
+  },
+  {
+    "id": "cs16",
+    "code": "AV-C7A-SFTP-CB",
+    "name": "Category 7A S/Foiled Twisted Pair (S/FTP) cable",
+    "category": "copper-system",
+    "description": "AVAYO 8 insulated 4 color coded, copper wires twisted in pairs and individually foil shield for each pair, cabled together, over all wrapped with an aluminum foil and then covered with a tinned copper braid and jacketed with PVC or with halogen free compound.",
+    "image": "/products/Category-7A-S-Foiled-Twisted-Pair-(S-FTP)-cable.png"
+  },
+  {
+    "id": "cs17",
+    "code": "AV-FP-KWL",
+    "name": "Face Plates / Keystone Wall plates",
+    "category": "copper-system",
+    "description": "AVAYO face plates or keystone wall plates are made with rigid high quality plastic and have one to four ports. A keystone port is a standard hole used to mount various kinds of low voltage electrical jacks or optical connectors.",
+    "image": "/products/Face-Plates-Keystone-Wall-plates.png"
+  },
+  {
+    "id": "cs18",
+    "code": "AV-C5E-UTP-KS",
+    "name": "Category 5e UTP RJ 45 Key Stone Jack",
+    "category": "copper-system",
+    "description": "AVAYO unshielded RJ 45 8P8C Key Stone Jack, designed for fast and easy snap-in and out of face plates, patch panels and floor box outlets. These jacks are designed in 180° formation.",
+    "image": "/products/Category-5e-UTP-RJ-45-Key-Stone-Jack.png"
+  },
+  {
+    "id": "cs19",
+    "code": "AV-C5E-STP-KS",
+    "name": "Category 5e STP RJ 45 Key Stone Jack",
+    "category": "copper-system",
+    "description": "AVAYO Fully shielded RJ 45 8P8C Key Stone Jack, designed for fast and easy snap-in and out of face plates, patch panels and floor box outlets. These jacks are designed in 180° formation.",
+    "image": "/products/Category-5e-STP-RJ-45-Key-Stone-Jack.png"
+  },
+  {
+    "id": "cs20",
+    "code": "AV-C6-UTP-KS",
+    "name": "Category 6 UTP RJ 45 Key Stone Jack",
+    "category": "copper-system",
+    "description": "AVAYO unshielded RJ 45 8P8C Key Stone Jack, designed for fast and easy snap-in and out of face plates , patch panels and floor box outlets. These jacks are designed in 180° formation.",
+    "image": "/products/category-6-UTP-RJ-45-Key-Stone-Jack.png"
+  },
+  {
+    "id": "cs21",
+    "code": "AV-C6-UTP-MOD",
+    "name": "Category 6 UTP Modular Insert",
+    "category": "copper-system",
+    "description": "AVAYO unshielded RJ 45 8P8C modular insert designed for fast and easy snap-in and out of face plates. These modules are designed in 180° formation to provide easier termination.",
+    "image": "/products/Category-6-UTP-Modular-Insert.png"
+  },
+  {
+    "id": "cs22",
+    "code": "AV-C6-STP-KS",
+    "name": "Category 6 STP RJ 45 Key Stone Jack",
+    "category": "copper-system",
+    "description": "AVAYO fully shielded RJ 45 8P8C Key Stone Jack, designed for fast and easy snap-in and out of face plates, patch panels and floor box outlets. These jacks are designed in 180° formation.",
+    "image": "/products/Category-6-STP-RJ-45-Key-Stone-Jack.png"
+  },
+  {
+    "id": "cs23",
+    "code": "AV-C6A-UTP-KS",
+    "name": "Category 6A UTP RJ 45 Key Stone Jack",
+    "category": "copper-system",
+    "description": "AVAYO unshielded RJ 45 8P8C Key Stone Jack, designed for fast and easy snap-in and out of face plates, patch panels and floor box outlets. These jacks are designed in 180° formation.",
+    "image": "/products/Category-6A-UTP-RJ-45-Key-Stone-Jack.png"
+  },
+  {
+    "id": "cs24",
+    "code": "AV-C6A-STP-KS",
+    "name": "Category 6A STP key stone jack",
+    "category": "copper-system",
+    "description": "AVAYO fully shielded RJ 45 8P8C Key Stone Jack, designed for fast and easy snap-in and out of face plates, patch panels and floor box outlets. These jacks are designed in 180° formation.",
+    "image": "/products/Category-6A-STP-key-stone-jack.png"
+  },
+  {
+    "id": "cs25",
+    "code": "AV-S-TL-KS",
+    "name": "Shielded Tool Less RJ45 Key Stone Jack",
+    "category": "copper-system",
+    "description": "AVAYO fully shielded RJ 45 tool – less 8P8C Key Stone Jack, designed for fast termination of cables and easy snap-in and out of face plates, patch panels and floor box outlets. These jacks are designed in 180° formation.",
+    "image": "/products/Shielded-Tool-Less-RJ45-Key-Stone-Jack.png"
+  },
+  {
+    "id": "cs26",
+    "code": "AV-U-TL-KS",
+    "name": "Unshielded Tool Less RJ45 Key Stone Jack",
+    "category": "copper-system",
+    "description": "AVAYO unshielded RJ 45 tool – less 8P8C Key Stone Jack, designed for fast termination of cables and easy snap-in and out of face plates, patch panels and floor box outlets. These jacks are designed in 180° formation.",
+    "image": "/products/Unshielded-Tool-Less-RJ45-Key-Stone-Jack.png"
+  },
+  {
+    "id": "cs27",
+    "code": "AV-C5E-UTP-PC",
+    "name": "Category 5e UTP Modular Patch Cords",
+    "category": "copper-system",
+    "description": "AVAYO unshielded 8 insulated 4 color coded, copper wires twisted in pairs cabled together and over all jacketed with PVC or with halogen free compound. These patch cords are available in various lengths with RJ 45 terminations at both ends.",
+    "image": "/products/Category-5e-UTP-Modular-Patch-Cords.png"
+  },
+  {
+    "id": "cs28",
+    "code": "AV-C5E-FTP-PC",
+    "name": "Category 5e FTP Modular Patch Cords",
+    "category": "copper-system",
+    "description": "AVAYO unshielded 8 insulated 4 color coded, copper wires twisted in pairs cabled together over all foil shielded and jacketed with PVC or with halogen free compound. These patch cords are available in various lengths with RJ 45 terminations at both ends.",
+    "image": "/products/Category-5e-FTP-Modular-Patch-Cords.png"
+  },
+  {
+    "id": "cs29",
+    "code": "AV-C6-UTP-PC",
+    "name": "Category 6 UTP Modular Patch Cords",
+    "category": "copper-system",
+    "description": "AVAYO unshielded 8 insulated 4 color coded, copper wires twisted in pairs cabled together and over all jacketed with PVC or with halogen free compound. These patch cords are available in various lengths with RJ 45 terminations at both ends.",
+    "image": "/products/Category-6-UTP-Modular-Patch-Cords.png"
+  },
+  {
+    "id": "cs30",
+    "code": "AV-C6-FTP-PC",
+    "name": "Category 6 FTP Modular Patch Cords",
+    "category": "copper-system",
+    "description": "AVAYO unshielded 8 insulated 4 color coded, copper wires twisted in pairs cabled together over all foil shielded and jacketed with PVC or with halogen free compound. These patch cords are available in various lengths with RJ 45 terminations at both ends.",
+    "image": "/products/Category-6-FTP-Modular-Patch-Cords.png"
+  },
+  {
+    "id": "cs31",
+    "code": "AV-C6A-UTP-PC",
+    "name": "Category 6A UTP Modular Patch Cords",
+    "category": "copper-system",
+    "description": "AVAYO unshielded 8 insulated 4 color coded, copper wires twisted in pairs cabled together and over all jacketed with PVC or with halogen free compound. These patch cords are available in various lengths with RJ 45 terminations at both ends.",
+    "image": "/products/Category-6A-UTP-Modular-Patch-Cords.png"
+  },
+  {
+    "id": "cs32",
+    "code": "AV-C6A-FTP-PC",
+    "name": "Category 6A FTP Modular Patch Cords",
+    "category": "copper-system",
+    "description": "Unshielded 8 insulated 4 color coded, copper wires twisted in pairs cabled together over all foiled shielded and over all jacketed with PVC or with halogen free compound. These patch cords are available in various lengths with RJ 45 terminations at both ends.",
+    "image": "/products/Category-6A-FTP-Modular-Patch-Cords.png"
+  },
+  {
+    "id": "cs33",
+    "code": "AV-C5E-UTP-PP",
+    "name": "Category 5e UTP Loaded Patch Panel",
+    "category": "copper-system",
+    "description": "AVAYO unshielded RJ 45 copper patch panel, used for equipment termination in telecommunication rooms, loaded with connecting modules for the entire ports and back interconnection by 110 type or krone type IDC.",
+    "image": "/products/Category-5e-UTP-Loaded-Patch-Panel.png"
+  },
+  {
+    "id": "cs34",
+    "code": "AV-C5E-STP-PP",
+    "name": "Category 5E STP Loaded Patch Panel",
+    "category": "copper-system",
+    "description": "AVAYO shielded RJ 45 copper patch panel, used for equipment termination in telecommunication rooms, loaded with connecting modules for the entire ports and back interconnection by 110 type or krone type IDC.",
+    "image": "/products/Category-5E-STP-Loaded-Patch-Panel.png"
+  },
+  {
+    "id": "cs35",
+    "code": "AV-C6-UTP-PP",
+    "name": "Category 6 UTP Loaded Patch Panel",
+    "category": "copper-system",
+    "description": "AVAYO unshielded RJ 45 copper patch panel, used for equipment termination in tele- communication rooms, loaded with connecting modules for the entire ports and back interconnection by 110 type or krone type IDC.",
+    "image": "/products/Category-6-UTP-Loaded-Patch-Panel.png"
+  },
+  {
+    "id": "cs36",
+    "code": "AV-C6-STP-PP",
+    "name": "Category 6 STP Modular Patch Panel",
+    "category": "copper-system",
+    "description": "AVAYO shielded RJ 45 copper patch panel, used for equipment termination in telecommunication rooms, loaded with connecting modules for the entire ports and back interconnection by 110 type or krone type IDC.",
+    "image": "/products/Category-6-STP-Modular-Patch-Panel.png"
+  },
+  {
+    "id": "cs37",
+    "code": "AV-C6A-UTP-PP",
+    "name": "Category 6A UTP Loaded Patch Panel",
+    "category": "copper-system",
+    "description": "AVAYO unshielded RJ 45 copper patch panel, used for equipment termination in telecommunication rooms, loaded with connecting modules for the entire ports and back interconnection by 110 type or krone type IDC.",
+    "image": "/products/Category-6A-UTP-Loaded-Patch-Panel.png"
+  },
+  {
+    "id": "cs38",
+    "code": "AV-UL-PP",
+    "name": "Unloaded Patch Panel",
+    "category": "copper-system",
+    "description": "AVAYO unloaded patch panel, used for equipment termination in telecommunication rooms by connecting with required modules ( cat 5e, cat6, cat 6a), for the required number of ports.",
+    "image": "/products/Unloaded-Patch-Panel.png"
+  },
+  {
+    "id": "cs39",
+    "code": "AV-110-WB",
+    "name": "Wall Mount and Rack Mount 110 Wiring Blocks",
+    "category": "copper-system",
+    "description": "As an economical solution and for easy termination of voice and data cables, AVAYO 110 wiring blocks designed both wall mount and rack mount types in 50 and 100 pair's size.",
+    "image": "/products/Wall-Mount-and-Rack-Mount-110-Wiring-Blocks.png"
+  },
+  {
+    "id": "cs40",
+    "code": "AV-CD-MOD",
+    "name": "Connection and Disconnection Module",
+    "category": "copper-system",
+    "description": "AVAYO connection and disconnection modules designed to deliver high quality connectivity in high density telecommunication and data networking. It is suitable to use in all LSA-Plus series, 10 pairs and 8 pairs size.",
+    "image": "/products/Connection-and-Disconnection-Module.png"
+  },
+  {
+    "id": "cs41",
+    "code": "AV-DIST-BOX",
+    "name": "Distribution Boxes",
+    "category": "copper-system",
+    "description": "AVAYO wall mount type telecom distribution boxes to mount standard 10 pair modules are designed in 30, 50 and 100 pair's size with door opening for easy installation.",
+    "image": "/products/Distribution-Boxes.png"
+  },
+  {
+    "id": "cs42",
+    "code": "AV-DIST-FRAME",
+    "name": "Distribution Frames",
+    "category": "copper-system",
+    "description": "AVAYO distribution frame made of powder coated galvanized steel designed in single frame and double frame type. A single frame distribution frame can accommodate 690 pairs and a double frame can accommodate 1380 pairs.",
+    "image": "/products/Distribution-Frames.png"
+  },
+  {
+    "id": "cs43",
+    "code": "AV-TEL-PC",
+    "name": "Telecom Patch Cords",
+    "category": "copper-system",
+    "description": "AVAYO category 3 and 5 UTP patch cords available in various connecting types like 110-110 and 110-RJ 45 terminations with 1, 2 or 4 pairs and in various lengths.",
+    "image": "/products/Telecom-Patch-Cords.png"
+  },
+  {
+    "id": "cs44",
+    "code": "AV-C3-VPP",
+    "name": "Cat 3 Voice Patch Panel",
+    "category": "copper-system",
+    "description": "AVAYO cat 3 RJ 45 voice patch panel is made with 25 or 50 port PCB units fixed in 1U and back interconnections in 110 or krone type IDC.",
+    "image": "/products/Cat-3-Voice-Patch-Panel.png"
+  },
+  {
+    "id": "cs45",
+    "code": "AV-RJ45-ILC",
+    "name": "RJ 45 In line Coupler",
+    "category": "copper-system",
+    "description": "AVAYO RJ45 8P 8C female to RJ45 8P 8C female in line coupler provides fast and easy plug and play connection of 8-position RJ45 patch cables.",
+    "image": "/products/RJ-45-In-line-Coupler.png"
+  },
+  {
+    "id": "cs46",
+    "code": "AV-BL-INS",
+    "name": "Blank Insert",
+    "category": "copper-system",
+    "description": "AVAYO blank insert used in Face plates and patch panels to cover the blank areas of wall plates and unloaded patch panels used in telecommunication rooms.",
+    "image": "/products/Blank-Insert.png"
+  },
   {
     "id": "p1",
     "code": "AF-06PLCD-W",
