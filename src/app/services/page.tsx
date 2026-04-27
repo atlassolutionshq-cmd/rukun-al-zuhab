@@ -1,23 +1,11 @@
-import { Truck, FileCheck, RefreshCcw, Shield, Clock, ArrowUpRight, ArrowRight, Cog } from "lucide-react"
+"use client"
+
+import { Truck, FileCheck, RefreshCcw, Shield, Clock, ArrowUpRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import type { Metadata } from "next"
 
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-
-export const metadata: Metadata = {
-  title: "Industrial Services & Solutions",
-  description: "Comprehensive industrial services in Saudi Arabia including procurement, quality assurance, regional logistics, and technical support. We power the Kingdom's critical infrastructure.",
-  keywords: [
-    "industrial procurement",
-    "quality assurance Saudi Arabia",
-    "industrial logistics",
-    "technical support",
-    "supply chain management",
-    "Saudi Arabia trading services",
-  ],
-}
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations"
 
 const services = [
   {
@@ -59,43 +47,8 @@ const services = [
 ]
 
 export default function ServicesPage() {
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What industrial services does Rukun Al Zuhab provide?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Rukun Al Zuhab provides comprehensive industrial solutions including global procurement, multi-point quality assurance, regional logistics with a dedicated fleet, and technical engineering support. We have been operational since 1999 with a 98% client retention rate."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How does Rukun Al Zuhab ensure product quality?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Every shipment undergoes a rigorous multi-point inspection protocol to ensure 100% compliance with Saudi industrial standards and regulatory requirements."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does Rukun Al Zuhab offer technical support for installations?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, we provide engineering-led consultation from initial product selection through to installation and long-term operational maintenance."
-        }
-      }
-    ]
-  };
-
   return (
     <div className="bg-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
       {/* Hero Section - Atmospheric & Technical */}
       <section className="relative h-[65vh] flex items-center overflow-hidden border-b border-gray-100">
         <div className="absolute inset-0 z-0">
@@ -111,21 +64,27 @@ export default function ServicesPage() {
 
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 w-full relative z-20">
           <div className="max-w-4xl space-y-12">
-            <div className="inline-flex items-center gap-4 px-1 py-1 group cursor-default">
-              <div className="h-px w-8 bg-red/50 group-hover:w-12 transition-all duration-500" />
-              <span className="text-[10px] font-bold tracking-[0.4em] text-red/80 uppercase">
-                OPERATIONAL EXCELLENCE • PROTOCOLS
-              </span>
-            </div>
+            <FadeIn direction="right" delay={0.2}>
+              <div className="inline-flex items-center gap-4 px-1 py-1 group cursor-default">
+                <div className="h-px w-8 bg-red/50 group-hover:w-12 transition-all duration-500" />
+                <span className="text-[10px] font-bold tracking-[0.4em] text-red/80 uppercase">
+                  OPERATIONAL EXCELLENCE • PROTOCOLS
+                </span>
+              </div>
+            </FadeIn>
             <div className="space-y-8">
-              <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1]">
-                Industrial <br />
-                <span className="text-red italic font-medium">Frameworks</span>
-              </h1>
-              <p className="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed font-normal">
-                We engineer the supply chains that power Saudi Arabia&apos;s most critical 
-                infrastructure and manufacturing projects.
-              </p>
+              <FadeIn delay={0.4}>
+                <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1]">
+                  Industrial <br />
+                  <span className="text-red italic font-medium">Frameworks</span>
+                </h1>
+              </FadeIn>
+              <FadeIn delay={0.6}>
+                <p className="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed font-normal">
+                  We engineer the supply chains that power Saudi Arabia&apos;s most critical 
+                  infrastructure and manufacturing projects.
+                </p>
+              </FadeIn>
             </div>
           </div>
         </div>
@@ -134,9 +93,9 @@ export default function ServicesPage() {
       {/* Services Grid - High-Tech Protocol Cards */}
       <section className="py-40 tech-grid">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
             {services.map((service) => (
-              <div 
+              <StaggerItem 
                 key={service.title} 
                 className="group bg-white p-12 rounded-[2.5rem] border border-gray-100 hover:border-red/30 hover:shadow-2xl transition-all duration-500 flex flex-col justify-between h-[450px] relative overflow-hidden"
               >
@@ -164,9 +123,9 @@ export default function ServicesPage() {
                     <ArrowUpRight className="h-4 w-4" />
                   </button>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -184,7 +143,7 @@ export default function ServicesPage() {
         </div>
 
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 text-center space-y-16 relative z-10">
-          <div className="space-y-6">
+          <FadeIn className="space-y-6">
             <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter">
               Need a <span className="text-red italic">bespoke</span> model?
             </h2>
@@ -192,16 +151,16 @@ export default function ServicesPage() {
               Our consulting team works directly with your project leads to develop 
               tailored procurement and logistics frameworks.
             </p>
-          </div>
+          </FadeIn>
           
-          <div className="flex flex-col sm:flex-row justify-center gap-8 pt-4">
+          <FadeIn delay={0.3} className="flex flex-col sm:flex-row justify-center gap-8 pt-4">
             <Button asChild size="lg" className="bg-red hover:bg-red/90 text-white font-bold h-16 px-12 rounded-full transition-all uppercase tracking-[0.2em] text-[11px] shadow-2xl glow-primary">
               <Link href="/contact">Initialize Consultation</Link>
             </Button>
             <Button asChild variant="ghost" size="lg" className="border border-white/20 text-white hover:bg-white/10 font-bold h-16 px-12 rounded-full transition-all uppercase tracking-[0.2em] text-[11px]">
               <Link href="/contact">View Case Studies</Link>
             </Button>
-          </div>
+          </FadeIn>
         </div>
       </section>
     </div>

@@ -1,11 +1,11 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, CheckCircle, Building2, Hammer, ShieldCheck, Zap, Cpu, Network, Database, Settings, Terminal } from "lucide-react"
+import { ArrowRight, Cpu, Network, Database, Settings } from "lucide-react"
 
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations"
 
 const features = [
   {
@@ -60,50 +60,58 @@ export default function HomePage() {
         <div className="container-wide w-full relative z-20">
           <div className="max-w-4xl space-y-12">
             <h1 className="sr-only">Rukun Al Zuhab Trading Co - Leading Industrial Solutions in Saudi Arabia</h1>
-            <div className="inline-flex items-center gap-4 px-1 py-1 group cursor-default animate-reveal">
-              <div className="h-px w-8 bg-red/50 group-hover:w-12 transition-all duration-500" />
-              <span className="text-[10px] font-bold tracking-[0.4em] text-red/80 uppercase">
-                ESTABLISHED 1999 • RIYADH HEADQUARTERS
-              </span>
-            </div>
+            <FadeIn direction="right" delay={0.2}>
+              <div className="inline-flex items-center gap-4 px-1 py-1 group cursor-default">
+                <div className="h-px w-8 bg-red/50 group-hover:w-12 transition-all duration-500" />
+                <span className="text-[10px] font-bold tracking-[0.4em] text-red/80 uppercase">
+                  ESTABLISHED 1999 • RIYADH HEADQUARTERS
+                </span>
+              </div>
+            </FadeIn>
             
             <div className="space-y-8">
-              <div className="text-5xl md:text-7xl font-bold text-white heading-tight animate-reveal stagger-1">
-                Engineering the <br />
-                <span className="text-red italic font-medium">foundations</span> of <br />
-                Kingdom industry.
-              </div>
+              <FadeIn delay={0.4}>
+                <div className="text-5xl md:text-7xl font-bold text-white heading-tight">
+                  Engineering the <br />
+                  <span className="text-red italic font-medium">foundations</span> of <br />
+                  Kingdom industry.
+                </div>
+              </FadeIn>
               
-              <p className="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed font-normal animate-reveal stagger-2">
-                Strategic procurement and distribution of high-performance 
-                industrial components for a digital-first era.
-              </p>
+              <FadeIn delay={0.6}>
+                <p className="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed font-normal">
+                  Strategic procurement and distribution of high-performance 
+                  industrial components for a digital-first era.
+                </p>
+              </FadeIn>
             </div>
             
-            <div className="flex flex-wrap gap-8 pt-4 animate-reveal stagger-3">
-              <Button
-                asChild
-                size="lg"
-                className="bg-red hover:bg-red/90 text-white font-bold px-10 h-14 rounded-full transition-all text-[11px] uppercase tracking-widest shadow-2xl hover:-translate-y-0.5 glow-primary"
-              >
-                <Link href="/products">Explore Inventory</Link>
-              </Button>
-              <Button
-                asChild
-                variant="ghost"
-                size="lg"
-                className="text-white hover:text-red hover:bg-transparent px-0 h-14 transition-all text-[11px] uppercase tracking-widest flex items-center gap-4 group"
-              >
-                <Link href="/contact" className="inline-flex items-center gap-4">
-                  Request Specifications
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-2 transition-transform" />
-                </Link>
-              </Button>
-            </div>
+            <FadeIn delay={0.8}>
+              <div className="flex flex-wrap gap-8 pt-4">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-red hover:bg-red/90 text-white font-bold px-10 h-14 rounded-full transition-all text-[11px] uppercase tracking-widest shadow-2xl hover:-translate-y-0.5 glow-primary"
+                >
+                  <Link href="/products">Explore Inventory</Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="ghost"
+                  size="lg"
+                  className="text-white hover:text-red hover:bg-transparent px-0 h-14 transition-all text-[11px] uppercase tracking-widest flex items-center gap-4 group"
+                >
+                  <Link href="/contact" className="inline-flex items-center gap-4">
+                    Request Specifications
+                    <ArrowRight className="h-4 w-4 group-hover:translate-x-2 transition-transform" />
+                  </Link>
+                </Button>
+              </div>
+            </FadeIn>
           </div>
         </div>
 
-        <div className="absolute bottom-16 right-16 z-20 hidden lg:grid grid-cols-2 gap-x-20 gap-y-10 animate-reveal stagger-4">
+        <FadeIn delay={1} direction="left" className="absolute bottom-16 right-16 z-20 hidden lg:grid grid-cols-2 gap-x-20 gap-y-10">
           {stats.slice(0, 4).map((stat) => (
             <div key={stat.label} className="space-y-1">
               <div className="text-3xl font-bold text-white tracking-tighter">
@@ -114,31 +122,31 @@ export default function HomePage() {
               </div>
             </div>
           ))}
-        </div>
+        </FadeIn>
       </section>
 
       {/* Stats Line - Technical Precision */}
       <section className="bg-white py-32 border-b border-gray-50 tech-grid">
         <div className="container-wide">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-24">
+          <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-24">
             {stats.map((stat) => (
-              <div key={stat.label} className="space-y-2">
+              <StaggerItem key={stat.label} className="space-y-2">
                 <div className="text-5xl font-bold text-blue tracking-tighter leading-none">
                   {stat.value}
                 </div>
                 <div className="text-[10px] font-bold text-red uppercase tracking-[0.4em]">
                   {stat.label}
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Core Intelligence - Technical Protocol Cards */}
       <section className="py-32 bg-white relative">
         <div className="container-wide">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-24 gap-12 animate-reveal">
+          <FadeIn className="flex flex-col lg:flex-row lg:items-end justify-between mb-24 gap-12">
             <div className="space-y-8">
               <div className="inline-flex items-center gap-4">
                 <div className="h-px w-8 bg-red" />
@@ -154,16 +162,13 @@ export default function HomePage() {
             <Link href="/products" className="group text-[11px] font-bold text-blue uppercase tracking-widest inline-flex items-center gap-6 h-14 px-10 bg-gray-50 rounded-full hover:bg-red hover:text-white transition-all duration-500 shadow-sm hover:shadow-xl">
               Full Protocol Inventory <ArrowRight className="h-4 w-4 group-hover:translate-x-2 transition-transform" />
             </Link>
-          </div>
+          </FadeIn>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
-            {features.map((feature, index) => (
-              <div 
+          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+            {features.map((feature) => (
+              <StaggerItem 
                 key={feature.title} 
-                className={cn(
-                  "group bg-white p-12 rounded-[2.5rem] border border-gray-100 hover:border-red/30 hover:shadow-2xl transition-all duration-500 space-y-12 relative overflow-hidden h-[450px] flex flex-col justify-between animate-reveal",
-                  index === 0 ? "stagger-1" : index === 1 ? "stagger-2" : index === 2 ? "stagger-3" : "stagger-4"
-                )}
+                className="group bg-white p-12 rounded-[2.5rem] border border-gray-100 hover:border-red/30 hover:shadow-2xl transition-all duration-500 space-y-12 relative overflow-hidden h-[450px] flex flex-col justify-between"
               >
                 <div className="absolute top-12 right-12 text-[8px] font-bold text-blue/10 tracking-[0.3em] uppercase group-hover:text-red/20 transition-colors">
                   {feature.id}
@@ -179,9 +184,9 @@ export default function HomePage() {
                   </div>
                 </div>
                 <feature.icon className="h-8 w-8 text-blue/10 group-hover:text-red transition-all duration-700 self-end" />
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -189,7 +194,7 @@ export default function HomePage() {
       <section className="py-32 bg-gray-50/30 overflow-hidden border-y border-gray-100">
         <div className="container-wide">
           <div className="grid lg:grid-cols-12 gap-24 lg:gap-32 items-center">
-            <div className="lg:col-span-5 space-y-12 animate-reveal">
+            <FadeIn direction="right" className="lg:col-span-5 space-y-12">
               <div className="space-y-8">
                 <div className="inline-flex items-center gap-4">
                   <div className="h-px w-8 bg-red" />
@@ -208,9 +213,9 @@ export default function HomePage() {
               <Button asChild size="lg" className="rounded-full h-14 px-10 bg-blue hover:bg-blue/90 text-white font-bold transition-all uppercase tracking-widest text-[11px] glow-secondary">
                 <Link href="/about">Corporate Dossier</Link>
               </Button>
-            </div>
+            </FadeIn>
             
-            <div className="lg:col-span-7 relative h-[600px] flex items-center justify-center">
+            <FadeIn direction="left" className="lg:col-span-7 relative h-[600px] flex items-center justify-center">
               <div className="absolute inset-0 bg-white/40 backdrop-blur-3xl rounded-[4rem] border border-white/50" />
               <div className="relative w-full h-[500px] rounded-[3rem] overflow-hidden grayscale contrast-125 border border-gray-100">
                 <Image
@@ -221,14 +226,14 @@ export default function HomePage() {
                 />
               </div>
               {/* Floating UI Elements */}
-              <div className="absolute top-12 right-12 p-10 glass-futuristic rounded-[2.5rem] border-white/20 space-y-4">
+              <FadeIn delay={0.5} className="absolute top-12 right-12 p-10 glass-futuristic rounded-[2.5rem] border-white/20 space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="h-1.5 w-1.5 rounded-full bg-red animate-pulse" />
                   <p className="text-[10px] font-bold text-red uppercase tracking-widest">Protocol Verified</p>
                 </div>
                 <p className="text-lg font-bold text-blue leading-tight tracking-tight">ISO 9001:2015 <br />Certified Desk</p>
-              </div>
-            </div>
+              </FadeIn>
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -247,23 +252,23 @@ export default function HomePage() {
         </div>
         
         <div className="container-wide text-center relative z-10 space-y-12">
-          <div className="max-w-4xl mx-auto space-y-10">
+          <FadeIn className="max-w-4xl mx-auto space-y-10">
             <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-[1.1]">
               Project <br /><span className="text-red">Deployment.</span>
             </h2>
             <p className="text-lg md:text-xl text-white/30 max-w-2xl mx-auto leading-relaxed font-medium">
               Direct access to our strategic procurement desk for high-volume inquiries.
             </p>
-          </div>
+          </FadeIn>
           
-            <div className="flex flex-col sm:flex-row justify-center gap-8 pt-4">
+            <FadeIn delay={0.3} className="flex flex-col sm:flex-row justify-center gap-8 pt-4">
               <Button asChild size="lg" className="bg-red hover:bg-red/90 text-white h-16 px-12 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] transition-all glow-primary shadow-2xl hover:-translate-y-1">
                 <Link href="/contact">Initialize Terminal</Link>
               </Button>
               <Button asChild variant="ghost" size="lg" className="border border-white/20 text-white h-16 px-12 rounded-full font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-white/10 transition-all">
                 <Link href="/contact">Request Protocol</Link>
               </Button>
-            </div>
+            </FadeIn>
         </div>
       </section>
     </div>

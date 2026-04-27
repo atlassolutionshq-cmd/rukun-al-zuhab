@@ -1,21 +1,9 @@
+"use client"
+
 import Image from "next/image"
-import type { Metadata } from "next"
-import { CheckCircle, Award, Users, Target, Eye, ArrowRight } from "lucide-react"
+import { Award, Users, Target, Eye, ArrowRight } from "lucide-react"
 
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
-
-export const metadata: Metadata = {
-  title: "About Us",
-  description: "Established in 1999, Rukun Al Zuhab Trading Co is a trusted industrial partner in Saudi Arabia, specializing in premium building materials and technical systems.",
-  keywords: [
-    "about Rukun Al Zuhab",
-    "Saudi Arabia trading history",
-    "industrial legacy",
-    "Ahmed Al-Rashid CEO",
-    "Mohammed Al-Zuhab COO",
-  ],
-}
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations"
 
 const leadership = [
   {
@@ -66,26 +54,32 @@ export default function AboutPage() {
             className="object-cover grayscale brightness-[0.2] contrast-[1.2]"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue/90 via-blue/50 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue/90 via-blue/40 to-transparent z-10" />
         </div>
 
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 w-full relative z-20">
           <div className="max-w-4xl space-y-12">
-            <div className="inline-flex items-center gap-4 px-1 py-1 group cursor-default">
-              <div className="h-px w-8 bg-red/50 group-hover:w-12 transition-all duration-500" />
-              <span className="text-[10px] font-bold tracking-[0.4em] text-red/80 uppercase">
-                CORPORATE LEGACY • EST. 1999
-              </span>
-            </div>
+            <FadeIn direction="right" delay={0.2}>
+              <div className="inline-flex items-center gap-4 px-1 py-1 group cursor-default">
+                <div className="h-px w-8 bg-red/50 group-hover:w-12 transition-all duration-500" />
+                <span className="text-[10px] font-bold tracking-[0.4em] text-red/80 uppercase">
+                  CORPORATE LEGACY • EST. 1999
+                </span>
+              </div>
+            </FadeIn>
             <div className="space-y-8">
-              <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1]">
-                Engineering <br />
-                <span className="text-red italic font-medium">Confidence</span>
-              </h1>
-              <p className="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed font-normal">
-                Founded in 1999, Rukun Al Zuhab Trading Co has evolved into one of Saudi Arabia&apos;s 
-                most respected industrial partners.
-              </p>
+              <FadeIn delay={0.4}>
+                <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1]">
+                  Engineering <br />
+                  <span className="text-red italic font-medium">Confidence</span>
+                </h1>
+              </FadeIn>
+              <FadeIn delay={0.6}>
+                <p className="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed font-normal">
+                  Founded in 1999, Rukun Al Zuhab Trading Co has evolved into one of Saudi Arabia&apos;s 
+                  most respected industrial partners.
+                </p>
+              </FadeIn>
             </div>
           </div>
         </div>
@@ -95,7 +89,7 @@ export default function AboutPage() {
       <section className="py-40 tech-grid">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <div className="grid lg:grid-cols-12 gap-24 items-start">
-            <div className="lg:col-span-6 space-y-16">
+            <FadeIn className="lg:col-span-6 space-y-16">
               <div className="space-y-8">
                 <h2 className="text-4xl md:text-6xl font-bold text-blue tracking-tighter leading-tight">
                   Bridging global excellence with local industrial needs.
@@ -123,9 +117,9 @@ export default function AboutPage() {
                   <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-red">Retention</p>
                 </div>
               </div>
-            </div>
+            </FadeIn>
             
-            <div className="lg:col-span-6">
+            <FadeIn direction="left" className="lg:col-span-6">
               <div className="relative h-[700px] rounded-[3rem] overflow-hidden grayscale brightness-75 contrast-125 border border-gray-100">
                 <Image
                   src="/image.png"
@@ -135,7 +129,7 @@ export default function AboutPage() {
                 />
                 <div className="absolute inset-0 bg-blue/10 mix-blend-overlay" />
               </div>
-            </div>
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -144,9 +138,9 @@ export default function AboutPage() {
       <section className="py-40 bg-blue relative overflow-hidden">
         <div className="absolute inset-0 tech-grid opacity-10" />
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10">
-          <div className="grid md:grid-cols-3 gap-12">
+          <StaggerContainer className="grid md:grid-cols-3 gap-12">
             {values.map((value) => (
-              <div key={value.title} className="glass-futuristic p-12 rounded-[2.5rem] space-y-10 group hover:-translate-y-2 transition-all duration-500">
+              <StaggerItem key={value.title} className="glass-futuristic p-12 rounded-[2.5rem] space-y-10 group hover:-translate-y-2 transition-all duration-500">
                 <div className="h-px w-12 bg-red group-hover:w-full transition-all duration-700" />
                 <div className="space-y-6">
                   <div className="flex justify-between items-center">
@@ -157,16 +151,16 @@ export default function AboutPage() {
                     {value.description}
                   </p>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Leadership - Technical Dossier */}
       <section className="py-40 bg-white">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <div className="mb-32 space-y-6">
+          <FadeIn className="mb-32 space-y-6">
             <div className="inline-flex items-center gap-4 px-1 py-1">
               <div className="h-px w-8 bg-red" />
               <span className="text-[10px] font-bold tracking-[0.4em] text-red uppercase">
@@ -174,11 +168,11 @@ export default function AboutPage() {
               </span>
             </div>
             <h2 className="text-5xl md:text-7xl font-bold text-blue tracking-tighter">Executive Board</h2>
-          </div>
+          </FadeIn>
           
-          <div className="grid md:grid-cols-3 gap-16 lg:gap-24">
+          <StaggerContainer className="grid md:grid-cols-3 gap-16 lg:gap-24">
             {leadership.map((leader) => (
-              <div key={leader.name} className="group space-y-10">
+              <StaggerItem key={leader.name} className="group space-y-10">
                 <div className="aspect-[3/4] bg-gray-50 rounded-[2.5rem] overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-700 border border-gray-100">
                   <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] group-hover:opacity-[0.07] transition-opacity">
                     <Users className="h-64 w-64" />
@@ -193,15 +187,15 @@ export default function AboutPage() {
                   <div className="h-px w-8 bg-gray-100 group-hover:w-full transition-all duration-500" />
                   <p className="text-sm text-blue/50 leading-relaxed font-medium">{leader.bio}</p>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Final Call to Action */}
       <section className="py-40 border-t border-gray-100">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 text-center space-y-12">
+        <FadeIn className="max-w-[1400px] mx-auto px-6 md:px-12 text-center space-y-12">
           <h3 className="text-5xl md:text-7xl font-bold text-blue tracking-tighter">
             Build the <span className="text-red italic">infrastructure</span> of tomorrow.
           </h3>
@@ -210,7 +204,7 @@ export default function AboutPage() {
               Connect with our desk <ArrowRight className="h-4 w-4 group-hover:translate-x-2 transition-transform" />
             </button>
           </div>
-        </div>
+        </FadeIn>
       </section>
     </div>
   )

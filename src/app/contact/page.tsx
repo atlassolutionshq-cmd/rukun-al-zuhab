@@ -2,9 +2,10 @@
 
 import * as React from "react"
 import Image from "next/image"
-import { Send, MapPin, Phone, Mail, Terminal, ArrowRight } from "lucide-react"
+import { Send, MapPin, Phone, Mail, Terminal } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import { FadeIn } from "@/components/animations"
 
 export default function ContactPage() {
   return (
@@ -24,21 +25,27 @@ export default function ContactPage() {
 
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 w-full relative z-20">
           <div className="max-w-4xl space-y-12">
-            <div className="inline-flex items-center gap-4 px-1 py-1 group cursor-default animate-reveal">
-              <div className="h-px w-8 bg-red/50 group-hover:w-12 transition-all duration-500" />
-              <span className="text-[10px] font-bold tracking-[0.4em] text-red/80 uppercase">
-                COMMUNICATIONS TERMINAL • GLOBAL INQUIRY
-              </span>
-            </div>
-            <div className="space-y-8 animate-reveal stagger-1">
-              <h1 className="text-5xl md:text-7xl font-bold text-white heading-tight">
-                Initialize <br />
-                <span className="text-red italic font-medium">Contact</span>
-              </h1>
-              <p className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed font-normal">
-                Direct channel to our strategic procurement desk. Submit your technical 
-                specifications for rapid deployment.
-              </p>
+            <FadeIn direction="right" delay={0.2}>
+              <div className="inline-flex items-center gap-4 px-1 py-1 group cursor-default">
+                <div className="h-px w-8 bg-red/50 group-hover:w-12 transition-all duration-500" />
+                <span className="text-[10px] font-bold tracking-[0.4em] text-red/80 uppercase">
+                  COMMUNICATIONS TERMINAL • GLOBAL INQUIRY
+                </span>
+              </div>
+            </FadeIn>
+            <div className="space-y-8">
+              <FadeIn delay={0.4}>
+                <h1 className="text-5xl md:text-7xl font-bold text-white heading-tight">
+                  Initialize <br />
+                  <span className="text-red italic font-medium">Contact</span>
+                </h1>
+              </FadeIn>
+              <FadeIn delay={0.6}>
+                <p className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed font-normal">
+                  Direct channel to our strategic procurement desk. Submit your technical 
+                  specifications for rapid deployment.
+                </p>
+              </FadeIn>
             </div>
           </div>
         </div>
@@ -50,7 +57,7 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-12 gap-20">
             
             {/* Form Section */}
-            <div className="lg:col-span-7 space-y-12 animate-reveal stagger-2">
+            <FadeIn className="lg:col-span-7 space-y-12">
               <div className="space-y-4">
                 <p className="label-wide text-blue">PROTOCOL_SEND_DATA</p>
                 <h2 className="text-4xl font-bold text-blue tracking-tight">Technical Specification Inquiry</h2>
@@ -83,11 +90,11 @@ export default function ContactPage() {
                   <Send className="h-4 w-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </Button>
               </form>
-            </div>
+            </FadeIn>
 
             {/* Info Section */}
-            <div className="lg:col-span-5 space-y-12 animate-reveal stagger-3">
-              <div className="p-12 bg-blue rounded-[3rem] text-white space-y-16 relative overflow-hidden">
+            <div className="lg:col-span-5 space-y-12">
+              <FadeIn direction="left" className="p-12 bg-blue rounded-[3rem] text-white space-y-16 relative overflow-hidden">
                 <Terminal className="absolute -right-8 -top-8 h-48 w-48 text-white/[0.03]" />
                 
                 <div className="space-y-8 relative z-10">
@@ -127,10 +134,10 @@ export default function ContactPage() {
                     <p className="text-[10px] font-bold uppercase tracking-widest text-white/60">System Operational: 08:00 - 18:00 AST</p>
                   </div>
                 </div>
-              </div>
+              </FadeIn>
 
               {/* Map Placeholder */}
-              <div className="h-64 rounded-[3rem] bg-gray-100 border border-gray-100 overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-700 group">
+              <FadeIn direction="up" delay={0.4} className="h-64 rounded-[3rem] bg-gray-100 border border-gray-100 overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-700 group">
                 <Image 
                   src="/image.png" 
                   alt="Location Map"
@@ -142,7 +149,7 @@ export default function ContactPage() {
                     Interact_Map_Protocol
                   </div>
                 </div>
-              </div>
+              </FadeIn>
             </div>
           </div>
         </div>

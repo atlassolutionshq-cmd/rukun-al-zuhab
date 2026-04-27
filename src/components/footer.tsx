@@ -1,8 +1,10 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
-import { Mail, MapPin, Phone, ArrowUpRight } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
+import { FadeIn } from "@/components/animations"
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -20,7 +22,7 @@ const legalLinks = [
 export function Footer() {
   return (
     <footer className="bg-white border-t border-gray-100 pt-24 pb-12">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+      <FadeIn className="max-w-[1400px] mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-24">
           {/* Brand & Mission */}
           <div className="lg:col-span-5 space-y-10">
@@ -102,7 +104,7 @@ export function Footer() {
             ))}
           </div>
         </div>
-      </div>
+      </FadeIn>
     </footer>
   )
 }
