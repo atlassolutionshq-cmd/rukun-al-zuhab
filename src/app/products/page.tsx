@@ -80,47 +80,53 @@ export default function ProductsPage() {
       </section>
 
       {/* Command Center - Control Panel */}
-      <section className="sticky top-20 z-40 bg-white/80 backdrop-blur-2xl border-b border-gray-100">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 py-8 flex flex-col lg:flex-row items-center justify-between gap-12">
-          {/* Advanced Category Interface */}
-          <FadeIn className="flex flex-wrap items-center gap-x-12 gap-y-6">
-            {productCategories.map((cat) => {
-              const Icon = categoryIcons[cat.id] || Package
-              const isActive = activeCategory === cat.id
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={cn(
-                    "flex items-center gap-4 text-[11px] font-bold uppercase tracking-[0.2em] transition-all group relative py-2",
-                    isActive ? "text-blue" : "text-blue/30 hover:text-blue"
-                  )}
-                >
-                  <Icon className={cn("h-4 w-4 transition-colors", isActive ? "text-red" : "text-blue/20 group-hover:text-red")} />
-                  {cat.name}
-                  {isActive && (
-                    <motion.span 
-                      layoutId="activeCategory"
-                      className="absolute -bottom-2 left-0 w-full h-0.5 bg-red shadow-[0_0_8px_rgba(var(--brand-red),0.5)]" 
-                    />
-                  )}
-                </button>
-              )
-            })}
-          </FadeIn>
+      <section className="sticky top-16 md:top-20 z-40 bg-white/90 backdrop-blur-2xl border-b border-gray-100">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-12 py-4 md:py-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6 md:gap-12">
+          
+          {/* Advanced Category Interface - Horizontal Scroll on Mobile, Wrap on Desktop */}
+          <div className="relative w-full lg:w-auto overflow-hidden lg:overflow-visible">
+            {/* Visual Fade for Scroll Indication - Mobile Only */}
+            <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white/90 to-transparent z-10 lg:hidden pointer-events-none" />
+            
+            <FadeIn className="flex overflow-x-auto lg:overflow-visible no-scrollbar -mx-4 px-4 lg:mx-0 lg:px-0 items-center lg:flex-wrap gap-x-8 md:gap-x-12 lg:gap-y-4 pb-2 lg:pb-0">
+              {productCategories.map((cat) => {
+                const Icon = categoryIcons[cat.id] || Package
+                const isActive = activeCategory === cat.id
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setActiveCategory(cat.id)}
+                    className={cn(
+                      "flex items-center gap-3 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] transition-all group relative py-2 shrink-0 lg:shrink",
+                      isActive ? "text-blue" : "text-blue/30 hover:text-blue"
+                    )}
+                  >
+                    <Icon className={cn("h-3.5 w-3.5 md:h-4 w-4 transition-colors", isActive ? "text-red" : "text-blue/20 group-hover:text-red")} />
+                    <span className="whitespace-nowrap">{cat.name}</span>
+                    {isActive && (
+                      <motion.span 
+                        layoutId="activeCategory"
+                        className="absolute -bottom-1 lg:-bottom-2 left-0 w-full h-0.5 bg-red shadow-[0_0_8px_rgba(var(--brand-red),0.5)]" 
+                      />
+                    )}
+                  </button>
+                )
+              })}
+            </FadeIn>
+          </div>
 
           {/* Search Terminal */}
-          <FadeIn direction="left" className="relative w-full lg:w-96 group">
+          <FadeIn direction="left" className="relative w-full lg:w-80 group">
             <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none">
-              <Terminal className="h-4 w-4 text-blue/30 group-focus-within:text-red transition-colors" />
-              <span className="text-[10px] font-bold text-blue/10 group-focus-within:hidden">SYS_SEARCH:</span>
+              <Terminal className="h-3.5 w-3.5 text-blue/30 group-focus-within:text-red transition-colors" />
+              <span className="text-[9px] font-bold text-blue/10 group-focus-within:hidden">SYS_SRCH:</span>
             </div>
             <input
               type="text"
               placeholder="Search ID / Keyword..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-gray-50/50 border border-gray-100 focus:border-red/20 focus:bg-white pl-28 pr-6 py-4 rounded-xl text-[13px] font-bold text-blue placeholder:text-blue/20 transition-all outline-none"
+              className="w-full bg-gray-50/50 border border-gray-100 focus:border-red/20 focus:bg-white pl-24 pr-6 py-3 md:py-4 rounded-xl text-[12px] font-bold text-blue placeholder:text-blue/20 transition-all outline-none"
             />
           </FadeIn>
         </div>

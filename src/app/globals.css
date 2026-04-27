@@ -113,6 +113,15 @@
   .glass-glow {
     @apply relative overflow-hidden after:absolute after:inset-0 after:bg-gradient-to-tr after:from-red/5 after:to-transparent after:opacity-0 hover:after:opacity-100 after:transition-opacity;
   }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   /* Advanced Typography Spacing */
   .heading-tight {
     @apply tracking-[-0.04em] leading-[1.1];
