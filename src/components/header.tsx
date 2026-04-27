@@ -14,6 +14,7 @@ const navItems = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
+  { href: "/contact", label: "Contact" },
 ]
 
 export function Header() {
@@ -95,7 +96,7 @@ export function Header() {
                 />
               </div>
               <nav className="flex flex-col gap-2 p-8">
-                {[...navItems, { href: "/products", label: "Products" }, { href: "/contact", label: "Contact" }].map((item) => (
+                {[...navItems, { href: "/products", label: "Products" }].map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}

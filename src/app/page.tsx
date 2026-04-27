@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, CheckCircle, Building2, Hammer, ShieldCheck, Zap, Cpu, Network, Database, Settings, Terminal } from "lucide-react"
 
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -59,7 +60,7 @@ export default function HomePage() {
         <div className="container-wide w-full relative z-20">
           <div className="max-w-4xl space-y-12">
             <h1 className="sr-only">Rukun Al Zuhab Trading Co - Leading Industrial Solutions in Saudi Arabia</h1>
-            <div className="inline-flex items-center gap-4 px-1 py-1 group cursor-default">
+            <div className="inline-flex items-center gap-4 px-1 py-1 group cursor-default animate-reveal">
               <div className="h-px w-8 bg-red/50 group-hover:w-12 transition-all duration-500" />
               <span className="text-[10px] font-bold tracking-[0.4em] text-red/80 uppercase">
                 ESTABLISHED 1999 • RIYADH HEADQUARTERS
@@ -67,19 +68,19 @@ export default function HomePage() {
             </div>
             
             <div className="space-y-8">
-              <div className="text-5xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight">
+              <div className="text-5xl md:text-7xl font-bold text-white heading-tight animate-reveal stagger-1">
                 Engineering the <br />
                 <span className="text-red italic font-medium">foundations</span> of <br />
                 Kingdom industry.
               </div>
               
-              <p className="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed font-normal">
+              <p className="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed font-normal animate-reveal stagger-2">
                 Strategic procurement and distribution of high-performance 
                 industrial components for a digital-first era.
               </p>
             </div>
             
-            <div className="flex flex-wrap gap-8 pt-4">
+            <div className="flex flex-wrap gap-8 pt-4 animate-reveal stagger-3">
               <Button
                 asChild
                 size="lg"
@@ -102,7 +103,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="absolute bottom-16 right-16 z-20 hidden lg:grid grid-cols-2 gap-x-20 gap-y-10">
+        <div className="absolute bottom-16 right-16 z-20 hidden lg:grid grid-cols-2 gap-x-20 gap-y-10 animate-reveal stagger-4">
           {stats.slice(0, 4).map((stat) => (
             <div key={stat.label} className="space-y-1">
               <div className="text-3xl font-bold text-white tracking-tighter">
@@ -137,7 +138,7 @@ export default function HomePage() {
       {/* Core Intelligence - Technical Protocol Cards */}
       <section className="py-32 bg-white relative">
         <div className="container-wide">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-24 gap-12">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-24 gap-12 animate-reveal">
             <div className="space-y-8">
               <div className="inline-flex items-center gap-4">
                 <div className="h-px w-8 bg-red" />
@@ -145,7 +146,7 @@ export default function HomePage() {
                   SYSTEMS ARCHITECTURE
                 </span>
               </div>
-              <h2 className="text-5xl md:text-7xl font-bold text-blue tracking-tighter leading-none">
+              <h2 className="text-5xl md:text-7xl font-bold text-blue heading-tight">
                 Industrial <br />
                 <span className="text-blue/20 italic">Intelligence</span>
               </h2>
@@ -156,10 +157,13 @@ export default function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
-            {features.map((feature) => (
+            {features.map((feature, index) => (
               <div 
                 key={feature.title} 
-                className="group bg-white p-12 rounded-[2.5rem] border border-gray-100 hover:border-red/30 hover:shadow-2xl transition-all duration-500 space-y-12 relative overflow-hidden h-[450px] flex flex-col justify-between"
+                className={cn(
+                  "group bg-white p-12 rounded-[2.5rem] border border-gray-100 hover:border-red/30 hover:shadow-2xl transition-all duration-500 space-y-12 relative overflow-hidden h-[450px] flex flex-col justify-between animate-reveal",
+                  index === 0 ? "stagger-1" : index === 1 ? "stagger-2" : index === 2 ? "stagger-3" : "stagger-4"
+                )}
               >
                 <div className="absolute top-12 right-12 text-[8px] font-bold text-blue/10 tracking-[0.3em] uppercase group-hover:text-red/20 transition-colors">
                   {feature.id}
@@ -185,7 +189,7 @@ export default function HomePage() {
       <section className="py-32 bg-gray-50/30 overflow-hidden border-y border-gray-100">
         <div className="container-wide">
           <div className="grid lg:grid-cols-12 gap-24 lg:gap-32 items-center">
-            <div className="lg:col-span-5 space-y-12">
+            <div className="lg:col-span-5 space-y-12 animate-reveal">
               <div className="space-y-8">
                 <div className="inline-flex items-center gap-4">
                   <div className="h-px w-8 bg-red" />
@@ -193,7 +197,7 @@ export default function HomePage() {
                     THE LEGACY PROTOCOL
                   </span>
                 </div>
-                <h2 className="text-5xl md:text-7xl font-bold text-blue tracking-tighter leading-[1.1]">
+                <h2 className="text-5xl md:text-7xl font-bold text-blue heading-tight">
                   Standard <br /> <span className="text-red italic">01.</span>
                 </h2>
                 <p className="text-lg md:text-xl text-blue/40 leading-relaxed font-medium max-w-md">

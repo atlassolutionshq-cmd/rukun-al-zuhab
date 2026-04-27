@@ -113,18 +113,43 @@
   .glass-glow {
     @apply relative overflow-hidden after:absolute after:inset-0 after:bg-gradient-to-tr after:from-red/5 after:to-transparent after:opacity-0 hover:after:opacity-100 after:transition-opacity;
   }
-  .tech-grid {
-    background-image: radial-gradient(circle at 1px 1px, var(--border) 1px, transparent 0);
-    background-size: 40px 40px;
+  /* Advanced Typography Spacing */
+  .heading-tight {
+    @apply tracking-[-0.04em] leading-[1.1];
   }
-  .text-glow {
-    text-shadow: 0 0 20px rgba(var(--brand-red), 0.3);
+  .label-wide {
+    @apply text-[10px] font-bold uppercase tracking-[0.4em] opacity-50;
   }
-  .animate-slow-pan {
-    animation: pan 60s linear infinite;
+  
+  /* Staggered Animation Classes */
+  .animate-reveal {
+    animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(20px);
   }
-  @keyframes pan {
-    from { background-position: 0% 0%; }
-    to { background-position: 100% 100%; }
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+
+  @keyframes reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
+
+  /* Futuristic Interactive Elements */
+  .whatsapp-glow {
+    @apply shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:shadow-[0_0_40px_rgba(37,211,102,0.6)];
+  }
+  
+  .glass-input {
+    @apply bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white focus:border-red/50 focus:bg-white/10 outline-none transition-all;
+  }
+}
+
+@keyframes pan {
+  from { background-position: 0% 0%; }
+  to { background-position: 100% 100%; }
 }

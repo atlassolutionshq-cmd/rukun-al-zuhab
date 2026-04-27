@@ -52,14 +52,14 @@ export default function ProductsPage() {
 
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 w-full relative z-20">
           <div className="max-w-4xl space-y-12">
-            <div className="inline-flex items-center gap-4 px-1 py-1 group cursor-default">
+            <div className="inline-flex items-center gap-4 px-1 py-1 group cursor-default animate-reveal">
               <div className="h-px w-8 bg-red/50 group-hover:w-12 transition-all duration-500" />
               <span className="text-[10px] font-bold tracking-[0.4em] text-red/80 uppercase">
                 STRATEGIC INVENTORY • LIVE DATA
               </span>
             </div>
-            <div className="space-y-8">
-              <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1]">
+            <div className="space-y-8 animate-reveal stagger-1">
+              <h1 className="text-5xl md:text-7xl font-bold text-white heading-tight">
                 Technical <br />
                 <span className="text-red italic font-medium">Sourcing</span>
               </h1>
@@ -126,12 +126,15 @@ export default function ProductsPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-              {filteredProducts.map((product) => {
+              {filteredProducts.map((product, index) => {
                 const Icon = categoryIcons[product.category] || Package
                 return (
                   <div 
                     key={product.id} 
-                    className="group bg-white p-10 rounded-[2.5rem] border border-gray-100 hover:border-red/20 hover:shadow-2xl transition-all duration-500 relative flex flex-col justify-between min-h-[520px] overflow-hidden"
+                    className={cn(
+                      "group bg-white p-10 rounded-[2.5rem] border border-gray-100 hover:border-red/20 hover:shadow-2xl transition-all duration-500 relative flex flex-col justify-between min-h-[520px] overflow-hidden animate-reveal",
+                      index % 3 === 0 ? "stagger-1" : index % 3 === 1 ? "stagger-2" : "stagger-3"
+                    )}
                   >
                     {/* Background Visual Element */}
                     <div className="absolute -right-8 -top-8 h-48 w-48 bg-blue/[0.02] rounded-full group-hover:bg-red/[0.03] transition-colors duration-700" />
@@ -157,7 +160,7 @@ export default function ProductsPage() {
                       )}
                       
                       <div className="space-y-4">
-                        <h3 className="text-2xl font-bold text-blue tracking-tight leading-tight group-hover:text-red transition-colors line-clamp-2">
+                        <h3 className="text-2xl font-bold text-blue heading-tight group-hover:text-red transition-colors line-clamp-2">
                           {product.name}
                         </h3>
                         {product.description && (
