@@ -4,6 +4,7 @@ import * as React from "react"
 import { useState, useMemo } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { useParams, notFound } from "next/navigation"
 import { Package, ArrowRight, Cpu, Network, Database, Settings, ShieldCheck, Wrench, Terminal, LucideIcon } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
 
@@ -25,72 +26,89 @@ const categoryIcons: Record<string, LucideIcon> = {
   all: Package,
 }
 
-export default function ProductsPage() {
+export default function CategoryPage() {
+  const params = useParams()
+  const categoryId = params.category as string
   const [searchQuery, setSearchQuery] = useState("")
+
+  const category = useMemo(() => {
+    return productCategories.find(c => c.id === categoryId)
+  }, [categoryId])
+
+  if (!category) {
+    notFound()
+  }
 
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
       const matchesSearch = 
         product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         product.code.toLowerCase().includes(searchQuery.toLowerCase())
-      return matchesSearch
+      const matchesCategory = product.category === categoryId
+      return matchesSearch && matchesCategory
     })
-  }, [searchQuery])
+  }, [searchQuery, categoryId])
+
+  const Icon = categoryIcons[categoryId] || Package
 
   return (
     <div className="bg-white">
-      {/* Hero Section - Minimalist & Atmospheric */}
-      <section className="relative h-[50vh] flex items-center overflow-hidden border-b border-gray-100">
+      {/* Hero Section - Themed to Category */}
+      <section className="relative h-[40vh] flex items-center overflow-hidden border-b border-gray-100">
         <div className="absolute inset-0 z-0">
           <Image
             src="/image.png"
-            alt="Inventory Management"
+            alt={category.name}
             fill
-            className="object-cover grayscale brightness-[0.2] contrast-[1.3]"
+            className="object-cover grayscale brightness-[0.15] contrast-[1.4]"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-blue/90 via-blue/60 to-transparent z-10" />
         </div>
 
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 w-full relative z-20">
-          <div className="max-w-4xl space-y-8">
+          <div className="max-w-4xl space-y-6">
             <FadeIn direction="right" delay={0.2}>
               <div className="inline-flex items-center gap-4 px-1 py-1 group cursor-default">
                 <div className="h-px w-8 bg-red/50 group-hover:w-12 transition-all duration-500" />
                 <span className="text-[10px] font-bold tracking-[0.4em] text-red/80 uppercase font-mono">
-                  MASTER_CATALOG_v2.0
+                  SECTOR_SPECIFIC_VIEW // {categoryId.toUpperCase()}
                 </span>
               </div>
             </FadeIn>
             <FadeIn delay={0.4}>
-              <h1 className="text-5xl md:text-7xl font-bold text-white heading-tight">
-                Full Protocol <br />
-                <span className="text-red italic font-medium">Inventory</span>
-              </h1>
+              <div className="flex items-center gap-6">
+                <div className="h-16 w-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-xl">
+                  <Icon className="h-8 w-8 text-red" />
+                </div>
+                <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight uppercase">
+                  {category.name}
+                </h1>
+              </div>
             </FadeIn>
           </div>
         </div>
       </section>
 
-      {/* Command Bar - Search Centric */}
-      <section className="sticky top-16 md:top-20 z-40 bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-sm py-6">
-        <div className="max-w-[1400px] mx-auto px-4 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-6 overflow-x-auto no-scrollbar w-full md:w-auto">
-             <div className="flex items-center gap-3 shrink-0">
+      {/* Local Command Bar */}
+      <section className="sticky top-20 z-40 bg-white/95 backdrop-blur-xl border-b border-gray-100 py-6">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-6">
+             <Link href="/products" className="text-[10px] font-bold text-blue/40 hover:text-red uppercase tracking-widest transition-colors flex items-center gap-2">
+               <ArrowRight className="h-3 w-3 rotate-180" /> Back to Master Catalog
+             </Link>
+             <div className="h-4 w-px bg-gray-100 hidden md:block" />
+             <div className="flex items-center gap-3">
                <div className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
-               <p className="text-[10px] font-bold text-blue uppercase tracking-widest">Global Database Active</p>
+               <p className="text-[10px] font-bold text-blue uppercase tracking-widest">{category.name} Protocol Active</p>
              </div>
-             <div className="h-4 w-px bg-gray-100 shrink-0" />
-             <p className="text-[10px] font-bold text-blue/40 uppercase tracking-widest shrink-0">
-               Total Units: {products.length.toString().padStart(3, '0')}
-             </p>
           </div>
 
-          <div className="relative w-full md:w-96 group">
+          <div className="relative w-full md:w-80 group">
             <Terminal className="absolute left-4 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-blue/30 group-focus-within:text-red transition-colors" />
             <input
               type="text"
-              placeholder="SEARCH_MASTER_DATABASE..."
+              placeholder="FILTER_WITHIN_SECTOR..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-gray-50 border border-gray-100 focus:border-red focus:bg-white pl-10 pr-6 py-3 rounded-full text-[11px] font-bold text-blue placeholder:text-blue/20 transition-all outline-none uppercase tracking-widest"
@@ -99,7 +117,7 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* Master Grid */}
+      {/* Product Matrix */}
       <section className="py-24 tech-grid min-h-[600px]">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
           <AnimatePresence mode="wait">
@@ -112,13 +130,13 @@ export default function ProductsPage() {
                 className="py-40 text-center rounded-[3rem] bg-gray-50/50 border border-dashed border-gray-200"
               >
                 <Package className="h-16 w-16 text-blue/5 mx-auto mb-6" />
-                <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-blue/20">Zero matches in master protocol</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-blue/20">Zero matches in sector protocol</p>
                 <Button 
                   variant="ghost" 
                   onClick={() => setSearchQuery("")}
                   className="mt-8 text-red font-bold text-[10px] uppercase tracking-widest"
                 >
-                  Clear Search
+                  Clear Sector Filter
                 </Button>
               </motion.div>
             ) : (
@@ -127,7 +145,6 @@ export default function ProductsPage() {
                 className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
               >
                 {filteredProducts.map((product) => {
-                  const Icon = categoryIcons[product.category] || Package
                   return (
                     <StaggerItem 
                       key={product.id} 
@@ -172,12 +189,7 @@ export default function ProductsPage() {
                       <div className="relative z-10 pt-6 border-t border-gray-50 flex items-center justify-between">
                         <div className="space-y-1">
                           <p className="text-[8px] font-bold text-blue/20 uppercase tracking-[0.2em]">Deployment Sector</p>
-                          <Link 
-                            href={`/products/${product.category}`}
-                            className="text-[10px] font-bold text-blue hover:text-red uppercase tracking-widest transition-colors"
-                          >
-                            {productCategories.find(c => c.id === product.category)?.name || product.category}
-                          </Link>
+                          <p className="text-[10px] font-bold text-blue uppercase tracking-widest">{category.name}</p>
                         </div>
                         <Link 
                           href="/contact" 
@@ -193,37 +205,6 @@ export default function ProductsPage() {
             )}
           </AnimatePresence>
         </div>
-      </section>
-
-      {/* Sourcing Desk */}
-      <section className="py-32 relative overflow-hidden bg-blue">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/image.png"
-            alt="Technical Sourcing Desk"
-            fill
-            className="object-cover opacity-10 grayscale brightness-50"
-          />
-          <div className="absolute inset-0 bg-blue/90" />
-        </div>
-        
-        <FadeIn className="max-w-[1400px] mx-auto px-6 md:px-12 text-center space-y-10 relative z-10">
-          <div className="space-y-6">
-            <p className="text-[10px] font-bold uppercase tracking-[0.6em] text-red/60">SYSTEMS PROCUREMENT</p>
-            <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-none">
-              Direct <span className="text-red italic">Terminal</span>
-            </h2>
-          </div>
-          <p className="text-lg text-white/30 max-w-2xl mx-auto leading-relaxed font-medium">
-            Connect with our senior technical desk for high-volume procurement 
-            frameworks and specialized industrial sourcing.
-          </p>
-          <div className="pt-8">
-            <Button asChild size="lg" className="rounded-full px-12 py-7 bg-red hover:bg-red/90 text-white font-bold uppercase tracking-[0.2em] text-[10px] transition-all glow-primary shadow-2xl">
-              <Link href="/contact">Initialize Inquiry</Link>
-            </Button>
-          </div>
-        </FadeIn>
       </section>
     </div>
   )

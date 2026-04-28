@@ -10,7 +10,8 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
+import { productCategories } from "@/data/products"
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -22,6 +23,7 @@ const navItems = [
 export function Header() {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = React.useState(false)
+  const [isProductsHovered, setIsProductsHovered] = React.useState(false)
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-gray-100">
@@ -64,23 +66,65 @@ export function Header() {
             )
           })}
 
-          <Link
-            href="/products"
-            className={cn(
-              "text-[13px] font-bold uppercase tracking-widest transition-colors relative py-1",
-              pathname?.startsWith("/products")
-                ? "text-red"
-                : "text-gray-400 hover:text-red"
-            )}
+          {/* Products with Tactical Dropdown */}
+          <div 
+            className="relative py-1"
+            onMouseEnter={() => setIsProductsHovered(true)}
+            onMouseLeave={() => setIsProductsHovered(false)}
           >
-            Products
-            {pathname?.startsWith("/products") && (
-              <motion.span 
-                layoutId="header-active-dot"
-                className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-red rounded-full shadow-[0_0_8px_rgba(var(--brand-red),0.8)]" 
-              />
-            )}
-          </Link>
+            <Link
+              href="/products"
+              className={cn(
+                "text-[13px] font-bold uppercase tracking-widest transition-colors relative flex items-center gap-1.5",
+                pathname?.startsWith("/products")
+                  ? "text-red"
+                  : "text-gray-400 hover:text-red"
+              )}
+            >
+              Products
+              <motion.div
+                animate={{ rotate: isProductsHovered ? 180 : 0 }}
+                transition={{ duration: 0.2 }}
+                className="h-3 w-3 flex items-center justify-center"
+              >
+                <Menu className="h-2 w-2" /> {/* Using Menu as a small chevron-like icon for industrial feel */}
+              </motion.div>
+              {pathname?.startsWith("/products") && (
+                <motion.span 
+                  layoutId="header-active-dot"
+                  className="absolute -bottom-1 left-[calc(50%-8px)] -translate-x-1/2 w-1 h-1 bg-red rounded-full shadow-[0_0_8px_rgba(var(--brand-red),0.8)]" 
+                />
+              )}
+            </Link>
+
+            <AnimatePresence>
+              {isProductsHovered && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="absolute top-full left-0 mt-4 w-72 bg-white border border-gray-100 shadow-2xl rounded-2xl overflow-hidden py-4 z-[100]"
+                >
+                  <div className="px-6 py-2 mb-2 border-b border-gray-50">
+                    <p className="text-[10px] font-bold text-red uppercase tracking-[0.3em]">Protocol_Sectors</p>
+                  </div>
+                  {productCategories.map((cat) => (
+                    <Link
+                      key={cat.id}
+                      href={cat.id === 'all' ? '/products' : `/products/${cat.id}`}
+                      className="flex items-center justify-between px-6 py-3 hover:bg-gray-50 transition-colors group"
+                    >
+                      <span className="text-[11px] font-bold text-blue/60 group-hover:text-red uppercase tracking-widest transition-colors">
+                        {cat.name}
+                      </span>
+                      <div className="h-1 w-1 rounded-full bg-red opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
           <Button asChild variant="default" size="sm" className="rounded-full px-8 bg-red hover:bg-red/90 text-white transition-all ml-4 text-[11px] uppercase tracking-widest font-bold h-11 glow-primary">
             <Link href="/contact">Get in Touch</Link>
