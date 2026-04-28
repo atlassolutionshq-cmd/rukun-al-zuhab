@@ -11,6 +11,9 @@ export interface Product {
 export const productCategories = [
   { id: 'all', name: 'All Products' },
   { id: 'copper-system', name: 'Copper System' },
+  { id: 'fiber-system', name: 'Fiber System' },
+  { id: 'rack-system', name: 'Rack System' },
+  { id: 'data-center-system', name: 'Data Center System' },
   { id: 'fiber', name: 'Fiber Optics' },
   { id: 'copper', name: 'Copper Networking' },
   { id: 'cabinets', name: 'Cabinets & Enclosures' },
@@ -1598,5 +1601,301 @@ export const products: Product[] = [
     "code": "Local-C6PC-0.3M-RED",
     "name": "TECHLINE  Cat 6 Patch Cord UTP 0.3 Mtr RED",
     "category": "copper"
+  },
+  {
+    "id": "fs1",
+    "code": "AV-SZ-CBL",
+    "name": "Simplex and Zip Cable",
+    "category": "fiber-system",
+    "description": "AVAYO simplex cables are constructed with one tight-buffered fiber core with aramid strength members and jacketed for indoor use. Zip cord cable is two of…",
+    "image": "/products/fiber-system/Simplex-and-Zip-Cable.png"
+  },
+  {
+    "id": "fs2",
+    "code": "AV-ID-TBC",
+    "name": "Indoor Distribution Tight Buffered Cable",
+    "category": "fiber-system",
+    "description": "AVAYO distribution cables are for indoor applications with several tight-buffered fibers bundled under the same jacket with aramid strength members and sometimes fiberglass rod reinforcement.…",
+    "image": "/products/fiber-system/Indoor-Distribution-Tight-Buffered-Cable.png"
+  },
+  {
+    "id": "fs3",
+    "code": "AV-IOD-TBC",
+    "name": "Indoor and Out Door Distribution Tight Buffered Cable",
+    "category": "fiber-system",
+    "description": "Indoor/ Outdoor Distribution cables with several tight-buffered fibers bundled under the same jacket served with water-blocking swell able aramid yarns and jacketed with black, PVC…",
+    "image": "/products/fiber-system/Indoor-and-Out-Door-Distribution-Tight-Buffered-Cable.png"
+  },
+  {
+    "id": "fs4",
+    "code": "AV-OA-TBC",
+    "name": "Outdoor Armored Distribution Tight Buffered Cable",
+    "category": "fiber-system",
+    "description": "AVAYO out door Armored Distribution cables are constructed with several tight-buffered fibers bundled under the same jacket served with aramid yarns and jacketed with black…",
+    "image": "/products/fiber-system/Outdoor-Armored-Distribution-Tight-Buffered-Cable.png"
+  },
+  {
+    "id": "fs5",
+    "code": "AV-IO-LTC",
+    "name": "Indoor/Outdoor Loose Tube Cable",
+    "category": "fiber-system",
+    "description": "AVAYO cables are composed of several non buffered fibers together under the same jacket served with aramid yarns and jacketed with black, UV resistant PVC…",
+    "image": "/products/fiber-system/Indoor-Outdoor-Loose-Tube-Cable.png"
+  },
+  {
+    "id": "fs6",
+    "code": "AV-OA-LTC",
+    "name": "Outdoor Armored Loose Tube Cable",
+    "category": "fiber-system",
+    "description": "AVAYO cables are composed of several non buffered fibers together under the same jacket served with aramid yarns and jacketed with black, UV resistant PVC…",
+    "image": "/products/fiber-system/Outdoor-Armored-Loose-Tube-Cable.png"
+  },
+  {
+    "id": "fs7",
+    "code": "AV-IO-SLTC",
+    "name": "Indoor/Outdoor Stranded Loose Tube Cable",
+    "category": "fiber-system",
+    "description": "AVAYO cables are composed of several non buffered fibers sub grouped into multi PE Jackets served with aramid yarns and then jacketed together with black,…",
+    "image": "/products/fiber-system/Indoor-Outdoor-Stranded-Loose-Tube-Cable.png"
+  },
+  {
+    "id": "fs8",
+    "code": "AV-OA-SLTC",
+    "name": "Outdoor Armored Stranded Loose Tube Cable",
+    "category": "fiber-system",
+    "description": "AVAYO cables are composed of several non buffered fibers sub grouped into multi PE Jackets served with aramid yarns and then jacketed together with black,…",
+    "image": "/products/fiber-system/Outdoor-Armored-Stranded-Loose-Tube-Cable.png"
+  },
+  {
+    "id": "fs9",
+    "code": "AV-I-FTTH",
+    "name": "Indoor FTTH Drop Cable",
+    "category": "fiber-system",
+    "description": "AVAYO FTTH drop cable for connecting Network Access Point to the subscriber premises is designed with attributes such as flexibility, less weight, smaller diameter, ease…",
+    "image": "/products/fiber-system/Indoor-FTTH-Drop-Cable.png"
+  },
+  {
+    "id": "fs10",
+    "code": "AV-FO-ADP",
+    "name": "Fiber Optic Adapters",
+    "category": "fiber-system",
+    "description": "AVAYO fiber optic adapters are available in different types such as LC, SC, SC/APC, ST, FC, FC/APC, MTRJ and E2000 in simplex and duplex forms.…",
+    "image": "/products/fiber-system/Fiber-Optic-Adapters.png"
+  },
+  {
+    "id": "fs11",
+    "code": "AV-FO-PT",
+    "name": "Fiber Optic Pigtails",
+    "category": "fiber-system",
+    "description": "AVAYO fiber optic pigtails consists of a single mode or multimode fiber cord, one end with connector and other end open for direct joining. The…",
+    "image": "/products/fiber-system/Fiber-Optic-Pigtails.png"
+  },
+  {
+    "id": "fs12",
+    "code": "AV-FO-CON",
+    "name": "Fiber Optic Connector",
+    "category": "fiber-system",
+    "description": "AVAYO fiber optic Connectors are available in different types such as LC, SC, SC/APC, ST, FC, FC/APC, MTRJ and E2000. The connectors are either epoxy…",
+    "image": "/products/fiber-system/Fiber-Optic-Connector.png"
+  },
+  {
+    "id": "fs13",
+    "code": "AV-FO-PC",
+    "name": "Fiber Optic Patch Cords",
+    "category": "fiber-system",
+    "description": "AVAYO fiber optic patch cord consists of a single mode or multi mode fiber cord with two connectors at each end. The connector types are…",
+    "image": "/products/fiber-system/Fiber-Optic-Patch-Cords.png"
+  },
+  {
+    "id": "fs14",
+    "code": "AV-FO-TP",
+    "name": "Fiber Optic Termination Panels",
+    "category": "fiber-system",
+    "description": "AVAYO fiber termination panel or optic patch used to terminate, protect and organize the fiber optic cables and optical fibers in the fiber optic communciation…",
+    "image": "/products/fiber-system/Fiber-Optic-Termination-Panels.png"
+  },
+  {
+    "id": "fs15",
+    "code": "AV-FO-SPL",
+    "name": "Fiber Optic Splitter",
+    "category": "fiber-system",
+    "description": "Fiber optic splitter which splits fiber optic light in to several parts is an important passive component used in fiber networking. AVAYO planar light wave…",
+    "image": "/products/fiber-system/Fiber-Optic-Splitter.png"
+  },
+  {
+    "id": "rs1",
+    "code": "AV-S-FS",
+    "name": "S Series - Floor Standing Cabinets",
+    "category": "rack-system",
+    "description": "AVAYO Supreme Series Floor Standing cabinets designed with heavy duty frame and customer friendly facility for data communication and telecommunication network solutions. Size ranges from…",
+    "image": "/products/rack-system/Floor-Standing-Cabinets.png"
+  },
+  {
+    "id": "rs2",
+    "code": "AV-WM-DS",
+    "name": "Wall Mount Double Section Network Cabinets",
+    "category": "rack-system",
+    "description": "Double section cabinets are designed for easy access of the rear side of a wall mount cabinet. The rear section of the cabinet mount to…",
+    "image": "/products/rack-system/Wall-Mount-Double-Section-Network-Cabinets.png"
+  },
+  {
+    "id": "rs3",
+    "code": "AV-WM-SS",
+    "name": "Wall Mount Single Section Cabinets",
+    "category": "rack-system",
+    "description": "AVAYO wall mount cabinets designed to accommodate multiple 19\" equipment modules for data communication and telecommunication network solutions. Size ranges from 4U till 18U. These…",
+    "image": "/products/rack-system/Wall-Mount-Single-Section-Cabinets.png"
+  },
+  {
+    "id": "rs4",
+    "code": "AV-FTTH-CAB",
+    "name": "FTTH Cabinets",
+    "category": "rack-system",
+    "description": "FTTH cabinets for customer premise designed in different models and sizes to suit customer requirement. These cabinets are available in single section or double section…",
+    "image": "/products/rack-system/FTTH-Cabinets.png"
+  },
+  {
+    "id": "rs5",
+    "code": "AV-FS-CAB",
+    "name": "Floor Standing Cabinet",
+    "category": "rack-system",
+    "description": "AVAYO floor standing cabinets designed to accommodate multiple 19” equipment modules for data communication and telecommunication network solutions. Size ranges from 22U till 47U, these…",
+    "image": "/products/rack-system/Floor-Standing-Cabinet.png"
+  },
+  {
+    "id": "rs6",
+    "code": "AV-OD-CAB",
+    "name": "Outdoor Cabinets",
+    "category": "rack-system",
+    "description": "AVAYO Outdoor cabinets made with heavy duty cold rolled steel or stainless steel or aluminum frame for our door applications. These cabinets are either with…",
+    "image": "/products/rack-system/Outdoor-Cabinets.png"
+  },
+  {
+    "id": "rs7",
+    "code": "AV-OPEN-RCK",
+    "name": "Open Racks",
+    "category": "rack-system",
+    "description": "AVAYO floor standing open racks designed to accommodate multiple 19” equipment modules for data communication and telecommunication network solutions. Size ranges from 27U till 47U,…",
+    "image": "/products/rack-system/Open-Racks.png"
+  },
+  {
+    "id": "rs8",
+    "code": "AV-19-WB",
+    "name": "19” Wall Bracket",
+    "category": "rack-system",
+    "description": "AVAYO wall bracket is an ideal alternative to full size racks for accommodating 19” patch panels. Size ranges from 2U, 4U, 6U, 9U and 12U…",
+    "image": "/products/rack-system/19-Wall-Bracket.png"
+  },
+  {
+    "id": "rs9",
+    "code": "AV-10-WMSS",
+    "name": "10” Wall Mount Single Section Cabinets",
+    "category": "rack-system",
+    "description": "AVAYO wall mount single section 10” cabinets ( SOHO) designed to accommodate multiple 10” equipment modules for data communication and telecommunication network solutions. Size ranges…",
+    "image": "/products/rack-system/10-Wall-Mount-Single-Section-Cabinets.png"
+  },
+  {
+    "id": "rs10",
+    "code": "AV-CBL-ORG",
+    "name": "Cable Organizer",
+    "category": "rack-system",
+    "description": "AVAYO for proper cable management at racks, AVAYO designed cable organizer both horizontal and vertical types to provide neat and easy cable organizing solutions. The…",
+    "image": "/products/rack-system/Cable-Organizer.png"
+  },
+  {
+    "id": "rs11",
+    "code": "AV-FAN-UNT",
+    "name": "Fan Unit",
+    "category": "rack-system",
+    "description": "Standard with most of AVAYO wall mount and floor standing cabinets, fan unit available as single fan, set of 2 fans and set of 4…",
+    "image": "/products/rack-system/Fan-Unit.png"
+  },
+  {
+    "id": "rs12",
+    "code": "AV-FXD-SHLF",
+    "name": "Fixed Shelf",
+    "category": "rack-system",
+    "description": "AVAYO four post heavy duty fixed shelf with a loading capacity of 50-100 kgs, available in different size to suit the required cabinets.",
+    "image": "/products/rack-system/Fixed-Shelf.png"
+  },
+  {
+    "id": "rs13",
+    "code": "AV-SLD-SHLF",
+    "name": "Sliding Shelf",
+    "category": "rack-system",
+    "description": "Sliding shelf enables to pull out equipment placed inside the cabinet. These shelves are available in different sizes as per the depth the cabinets.",
+    "image": "/products/rack-system/Sliding-Shelf.png"
+  },
+  {
+    "id": "rs14",
+    "code": "AV-BLNK-PNL",
+    "name": "Blank Panel",
+    "category": "rack-system",
+    "description": "19” rack mount blank panels help to cover the free/ blank spaces of the rack profile. Blank panel normally available in 1U, 2U and 4U…",
+    "image": "/products/rack-system/Blank-Panel.png"
+  },
+  {
+    "id": "rs15",
+    "code": "AV-PDU",
+    "name": "PDU",
+    "category": "rack-system",
+    "description": "AVAYO rack mount Power Distribution Units designed in different types like normal power strips, PDU with master switch PDU with circuit breaker and surge protection…",
+    "image": "/products/rack-system/PDU.png"
+  },
+  {
+    "id": "rs16",
+    "code": "AV-S-WMDS",
+    "name": "S Series - Wall Mount Double Section Cabinets",
+    "category": "rack-system",
+    "description": "AVAYO Supreme Series wall mount cabinets designed with heavy duty frame and customer friendly facility for data communication and telecommunication network solutions. Size ranges from…",
+    "image": "/products/rack-system/news_event_1467007142.png"
+  },
+  {
+    "id": "dcs1",
+    "code": "AV-D-SERIES",
+    "name": "D-Series Rack",
+    "category": "data-center-system",
+    "description": "AVAYO D-series racks designed to accommodate multiple 19” equipment and servers. These are heavy duty racks with ample cable routing provisions and are designed for…",
+    "image": "/products/data-center-system/D-Series-Rack.png"
+  },
+  {
+    "id": "dcs2",
+    "code": "AV-COLD-CNT",
+    "name": "Cold Air Containment System",
+    "category": "data-center-system",
+    "description": "In this system, containment is designed to separate cold airflow with the hot air emitted from IT equipment’s by making the entire work area as…",
+    "image": "/products/data-center-system/Cold-Air-Containment-System.png"
+  },
+  {
+    "id": "dcs3",
+    "code": "AV-HOT-CNT",
+    "name": "Hot air Containment System",
+    "category": "data-center-system",
+    "description": "Here work area becomes a cold aisle and the hot exhaust air from IT equipment’s separated from cold air stream in the hot air containment.…",
+    "image": "/products/data-center-system/Hot-air-Containment-System.png"
+  },
+  {
+    "id": "dcs4",
+    "code": "AV-ROOF-PNL",
+    "name": "Roof Panel for containment",
+    "category": "data-center-system",
+    "description": "Modular roof panels with adjustment feature from 914mm to 1200mm (36 to 47.2 inches) length and 600mm or 800mm (23.62 or 31.5 inches) width made…",
+    "image": "/products/data-center-system/Roof-Panel-for-containment.png"
+  },
+  {
+    "id": "dcs5",
+    "code": "AV-SLD-DOOR",
+    "name": "Sliding Door",
+    "category": "data-center-system",
+    "description": "Sliding door mounted on the top of the end cabinet opening two sides with key or biometric lock system. A small sliding track fixed on…",
+    "image": "/products/data-center-system/Sliding-Door.png"
+  },
+  {
+    "id": "dcs6",
+    "code": "AV-HNG-DOOR",
+    "name": "Hing Door",
+    "category": "data-center-system",
+    "description": "Hinge door mounted to the sides of the end cabinet, opening outwards with keylock system or biometric locking system. The bottom of the doors are…",
+    "image": "/products/data-center-system/Hing-Door.png"
   }
 ];
