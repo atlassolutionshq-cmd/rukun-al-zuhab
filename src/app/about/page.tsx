@@ -2,10 +2,17 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Award, Target, Eye, ArrowRight } from "lucide-react"
+import { Award, Target, Eye, ShieldCheck } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations"
+
+const partners = [
+  { name: "AVAYO", label: "Copper Cabling Systems" },
+  { name: "Corning", label: "Fiber Optic Solutions" },
+  { name: "Legrand", label: "Network Infrastructure" },
+  { name: "KSS", label: "Cable Management" },
+]
 
 const values = [
   {
@@ -195,6 +202,27 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Trusted Partners Row */}
+      <section className="py-16 border-y border-gray-100 bg-gray-50/40">
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+          <FadeIn className="mb-10 flex items-center gap-4">
+            <div className="h-px w-8 bg-red" />
+            <p className="text-[10px] font-bold tracking-[0.5em] text-blue/40 uppercase">Manufacturer Partners</p>
+          </FadeIn>
+          <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-5">
+            {partners.map((p) => (
+              <StaggerItem
+                key={p.name}
+                className="group bg-white border border-gray-100 hover:border-red/20 rounded-2xl px-8 py-6 flex flex-col gap-2 transition-all duration-300 hover:shadow-md"
+              >
+                <p className="text-xl font-black text-blue/80 group-hover:text-blue tracking-tight transition-colors">{p.name}</p>
+                <p className="text-[11px] text-blue/35 font-medium uppercase tracking-wider">{p.label}</p>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
       {/* What We Supply */}
       <section className="py-40 bg-gray-50/50 border-y border-gray-100">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
@@ -215,7 +243,7 @@ export default function AboutPage() {
             {whatWeSupply.map((item) => (
               <StaggerItem
                 key={item.code}
-                className="group bg-white p-10 rounded-[2rem] border border-gray-100 hover:border-red/30 hover:shadow-xl transition-all duration-500 space-y-6 relative overflow-hidden flex flex-col"
+                className="group bg-white p-10 rounded-4xl border border-gray-100 hover:border-red/30 hover:shadow-xl transition-all duration-500 space-y-6 relative overflow-hidden flex flex-col"
               >
                 <div className="absolute top-10 right-10 text-[8px] font-bold text-blue/10 tracking-[0.3em] group-hover:text-red/20 transition-colors">
                   {item.code}
@@ -251,7 +279,7 @@ export default function AboutPage() {
                     <h3 className="text-3xl font-bold tracking-tight text-white">{value.title}</h3>
                     <value.icon className="h-6 w-6 text-red/40 group-hover:text-red transition-colors" />
                   </div>
-                  <p className="text-white/50 leading-relaxed text-sm font-medium">
+                  <p className="text-white/65 leading-relaxed text-sm font-medium">
                     {value.description}
                   </p>
                 </div>
