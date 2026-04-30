@@ -115,12 +115,12 @@ export default function RootLayout({
           href="https://wa.me/966500000000"
           target="_blank"
           rel="noopener noreferrer"
-          className="fixed bottom-8 right-8 z-[100] h-16 w-16 bg-[#25D366] text-white rounded-full flex items-center justify-center whatsapp-glow transition-all hover:scale-110 active:scale-95 group"
+          className="fixed bottom-6 right-6 z-[100] h-14 w-14 bg-[#25D366] text-white rounded-full flex items-center justify-center whatsapp-glow transition-all hover:scale-110 active:scale-95 group shadow-xl"
           aria-label="Contact on WhatsApp"
         >
-          <svg className="h-8 w-8 transition-transform group-hover:rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-11.7 8.38 8.38 0 0 1 3.8.9L22 2l-2.6 4.6z"/></svg>
-          <span className="absolute right-24 bg-white text-[#25D366] px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all pointer-events-none shadow-xl border border-gray-100 translate-x-4 group-hover:translate-x-0">
-            WhatsApp_Live
+          <svg className="h-6 w-6 transition-transform group-hover:rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-11.7 8.38 8.38 0 0 1 3.8.9L22 2l-2.6 4.6z"/></svg>
+          <span className="absolute right-20 bg-white text-[#25D366] px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all pointer-events-none shadow-xl border border-gray-100 translate-x-4 group-hover:translate-x-0 whitespace-nowrap">
+            WhatsApp Us
           </span>
         </a>
       </body>

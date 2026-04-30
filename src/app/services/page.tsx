@@ -59,7 +59,8 @@ export default function ServicesPage() {
             className="object-cover grayscale brightness-[0.25] contrast-[1.1]"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue/90 via-blue/40 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue/95 via-blue/70 to-blue/30 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-l from-blue/90 via-blue/30 to-transparent z-10" />
         </div>
 
         <div className="max-w-[1400px] mx-auto px-6 md:px-12 w-full relative z-20">
