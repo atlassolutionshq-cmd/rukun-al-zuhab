@@ -9,16 +9,15 @@ export interface Product {
 }
 
 export const productCategories = [
-  { id: 'all', name: 'All Products' },
+  { id: 'all', name: 'All Protocol' },
   { id: 'copper-system', name: 'Copper System' },
-  { id: 'fiber-system', name: 'Fiber System' },
-  { id: 'rack-system', name: 'Rack System' },
-  { id: 'data-center-system', name: 'Data Center System' },
-  { id: 'fiber', name: 'Fiber Optics' },
+  { id: 'fiber', name: 'Fiber Optic System' },
   { id: 'copper', name: 'Copper Networking' },
   { id: 'cabinets', name: 'Cabinets & Enclosures' },
-  { id: 'tools', name: 'Tools & Testing' },
+  { id: 'rack-system', name: 'Rack System' },
+  { id: 'data-center-system', name: 'Data Center System' },
   { id: 'accessories', name: 'Fittings & Accessories' },
+  { id: 'tools', name: 'Tools & Testing' },
 ];
 
 export const products: Product[] = [

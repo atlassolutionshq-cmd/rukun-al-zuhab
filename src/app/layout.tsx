@@ -24,14 +24,14 @@ export const metadata: Metadata = {
     template: "%s | Rukun Al Zuhab Trading Co",
   },
   description:
-    "Leading trading company in Saudi Arabia offering premium building materials, hardware, safety equipment, and electrical supplies. Trusted partner for quality solutions since 1999.",
+    "Leading IT Infrastructure Provider in Saudi Arabia. Specializing in Copper Cables, Fiber Systems, Rack Enclosures, and Data Center Infrastructure since 1999.",
   keywords: [
-    "trading company",
+    "IT infrastructure",
+    "network cabling",
+    "fiber optics",
+    "data center racks",
+    "copper cabling",
     "Saudi Arabia",
-    "building materials",
-    "hardware",
-    "safety equipment",
-    "electrical supplies",
     "Rukun Al Zuhab",
   ],
   authors: [{ name: "Rukun Al Zuhab Trading Co" }],
@@ -40,12 +40,12 @@ export const metadata: Metadata = {
     locale: "en_SA",
     url: "https://rukun-alzuhab.com",
     siteName: "Rukun Al Zuhab Trading Co",
-    title: "Rukun Al Zuhab Trading Co",
+    title: "Leading IT Infrastructure Provider | Rukun Al Zuhab",
     description:
-      "Leading trading company in Saudi Arabia offering premium building materials, hardware, safety equipment, and electrical supplies.",
+      "Leading IT Infrastructure Provider in Saudi Arabia. Specializing in Copper Cables, Fiber Systems, and Data Center Infrastructure.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/image.png",
         width: 1200,
         height: 630,
         alt: "Rukun Al Zuhab Trading Co",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Rukun Al Zuhab Trading Co",
     description:
-      "Leading trading company in Saudi Arabia offering premium building materials and industrial solutions.",
+      "Leading IT Infrastructure Provider in Saudi Arabia specializing in network cabling and industrial solutions.",
   },
   robots: {
     index: true,
@@ -75,17 +75,18 @@ export default function RootLayout({
     "name": "Rukun Al Zuhab Trading Co",
     "url": "https://rukun-alzuhab.com",
     "logo": "https://rukun-alzuhab.com/logo.jpg",
-    "description": "Leading trading company in Saudi Arabia specializing in building materials, hardware, safety equipment, and electrical supplies since 1999.",
+    "description": "Leading IT Infrastructure Provider in Saudi Arabia specializing in Copper Cables, Fiber Systems, and Data Center Infrastructure since 1999.",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "King Fahd Road, Olaya District",
+      "streetAddress": "Olaya Riyadh, P.O Box : 335119",
       "addressLocality": "Riyadh",
+      "postalCode": "11341",
       "addressCountry": "SA"
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+966-11-XXX-XXXX",
-      "contactType": "customer service",
+      "telephone": "+966-55-060-2197",
+      "contactType": "procurement desk",
       "areaServed": "SA",
       "availableLanguage": ["en", "ar"]
     }
@@ -114,10 +115,10 @@ export default function RootLayout({
         
         {/* Floating WhatsApp Action Button */}
         <a 
-          href="https://wa.me/966500000000"
+          href="https://wa.me/966550602197"
           target="_blank"
           rel="noopener noreferrer"
-          className="fixed bottom-6 right-6 z-[100] h-14 w-14 bg-[#25D366] text-white rounded-full flex items-center justify-center whatsapp-glow transition-all hover:scale-110 active:scale-95 group shadow-xl"
+          className="fixed bottom-6 right-6 z-[100] h-14 w-14 bg-[#25D366] text-white rounded-full flex items-center justify-center cyan-glow transition-all hover:scale-110 active:scale-95 group shadow-xl"
           aria-label="Contact on WhatsApp"
         >
           <svg className="h-6 w-6 transition-transform group-hover:rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-11.7 8.38 8.38 0 0 1 3.8.9L22 2l-2.6 4.6z"/></svg>

@@ -1,7 +1,6 @@
 "use client"
 
-import { Truck, FileCheck, RefreshCcw, Shield, Clock, ArrowUpRight } from "lucide-react"
-import Image from "next/image"
+import { Laptop, Settings, Factory, ShieldCheck, Headphones, Truck, ArrowRight } from "lucide-react"
 import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
@@ -9,157 +8,118 @@ import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations"
 
 const services = [
   {
+    icon: Laptop,
+    title: "Network Design & Consulting",
+    description: "Expert consultation and custom network architecture design tailored to your business requirements and growth plans.",
+    code: "01"
+  },
+  {
+    icon: Settings,
+    title: "Installation & Commissioning",
+    description: "Professional installation of copper, fibre, and rack systems by certified engineers following international standards.",
+    code: "02"
+  },
+  {
+    icon: Factory,
+    title: "Custom Manufacturing",
+    description: "Bespoke manufacturing of cables, panels, and rack systems to meet specific project specifications and requirements.",
+    code: "03"
+  },
+  {
+    icon: ShieldCheck,
+    title: "Testing & Certification",
+    description: "Comprehensive testing and certification of installed infrastructure using industry-standard tools and methodologies.",
+    code: "04"
+  },
+  {
+    icon: Headphones,
+    title: "Maintenance & Support",
+    description: "24/7 technical support and preventive maintenance programs to ensure maximum uptime and network reliability.",
+    code: "05"
+  },
+  {
     icon: Truck,
-    title: "Procurement & Sourcing",
-    description: "Leveraging a global network of manufacturers to source high-performance industrial components at optimized price points.",
-    code: "SVC-PROC-01"
-  },
-  {
-    icon: FileCheck,
-    title: "Quality Assurance",
-    description: "Every shipment undergoes rigorous multi-point inspections to ensure compliance with Saudi regulatory requirements.",
-    code: "SVC-QUAL-02"
-  },
-  {
-    icon: Truck,
-    title: "Regional Logistics",
-    description: "Strategic warehousing and a dedicated distribution fleet ensure rapid delivery across all regions of Saudi Arabia.",
-    code: "SVC-LOGI-03"
-  },
-  {
-    icon: Shield,
-    title: "Technical Support",
-    description: "Engineering-led consultation from product selection through to installation and operational maintenance.",
-    code: "SVC-TECH-04"
-  },
-  {
-    icon: RefreshCcw,
-    title: "After-Sales Lifecycle",
-    description: "Comprehensive support framework including warranty management, rapid replacements, and technical care.",
-    code: "SVC-AFTR-05"
-  },
-  {
-    icon: Clock,
-    title: "Critical Supply",
-    description: "Expedited procurement protocols for urgent industrial requirements with 24/7 emergency response availability.",
-    code: "SVC-CRIT-06"
+    title: "Supply & Logistics",
+    description: "Efficient supply chain management and logistics for timely delivery of networking products across the region.",
+    code: "06"
   },
 ]
 
 export default function ServicesPage() {
   return (
-    <div className="bg-white">
-      {/* Hero Section - Atmospheric & Technical */}
-      <section className="relative h-[65vh] flex items-center overflow-hidden border-b border-gray-100">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/image.png"
-            alt="Operational Excellence"
-            fill
-            className="object-cover grayscale brightness-[0.25] contrast-[1.1]"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue/95 via-blue/70 to-blue/30 z-10" />
-          <div className="absolute inset-0 bg-gradient-to-l from-blue/90 via-blue/30 to-transparent z-10" />
-        </div>
-
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 w-full relative z-20">
-          <div className="max-w-4xl space-y-12">
-            <FadeIn direction="right" delay={0.2}>
-              <div className="inline-flex items-center gap-4 px-1 py-1 group cursor-default">
-                <div className="h-px w-8 bg-red/50 group-hover:w-12 transition-all duration-500" />
-                <span className="text-[10px] font-bold tracking-[0.4em] text-red/80 uppercase">
-                  OPERATIONAL EXCELLENCE • PROTOCOLS
-                </span>
-              </div>
-            </FadeIn>
-            <div className="space-y-8">
-              <FadeIn delay={0.4}>
-                <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1]">
-                  Industrial <br />
-                  <span className="text-red italic font-medium">Frameworks</span>
-                </h1>
-              </FadeIn>
-              <FadeIn delay={0.6}>
-                <p className="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed font-normal">
-                  We engineer the supply chains that power Saudi Arabia&apos;s most critical 
-                  infrastructure and manufacturing projects.
-                </p>
-              </FadeIn>
+    <div className="bg-navy min-h-screen pt-32 pb-20">
+      {/* Header Section */}
+      <section className="container-wide mb-24">
+        <div className="max-w-4xl space-y-8">
+          <FadeIn>
+            <div className="inline-flex items-center gap-3 bg-cyan/10 border border-cyan/20 rounded-full px-4 py-1.5">
+              <span className="text-[10px] font-black text-cyan uppercase tracking-[0.3em]">Our Services</span>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Grid - High-Tech Protocol Cards */}
-      <section className="py-40 tech-grid">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-            {services.map((service) => (
-              <StaggerItem 
-                key={service.title} 
-                className="group bg-white p-12 rounded-[2.5rem] border border-gray-100 hover:border-red/30 hover:shadow-2xl transition-all duration-500 flex flex-col justify-between h-[450px] relative overflow-hidden"
-              >
-                {/* Background ID */}
-                <div className="absolute top-12 right-12 text-[8px] font-bold text-blue/10 tracking-[0.3em] uppercase group-hover:text-red/20 transition-colors">
-                  {service.code}
-                </div>
-                
-                <div className="space-y-10 relative z-10">
-                  <div className="h-px w-12 bg-red group-hover:w-full transition-all duration-700" />
-                  <div className="space-y-6">
-                    <div className="flex justify-between items-center">
-                      <h3 className="text-2xl font-bold tracking-tight text-blue">{service.title}</h3>
-                      <service.icon className="h-5 w-5 text-blue/20 group-hover:text-red transition-colors" />
-                    </div>
-                    <p className="text-blue/50 leading-relaxed text-sm font-medium">
-                      {service.description}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="relative z-10 pt-8 border-t border-gray-50 flex items-center justify-between">
-                  <span className="text-[10px] font-bold text-blue/30 uppercase tracking-widest">Active Protocol</span>
-                  <button className="h-10 w-10 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-red group-hover:text-white transition-all">
-                    <ArrowUpRight className="h-4 w-4" />
-                  </button>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* Bespoke Solutions - Immersive CTA */}
-      <section className="py-40 relative overflow-hidden bg-blue">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/image.png"
-            alt="Bespoke Industrial Solutions"
-            fill
-            className="object-cover opacity-20 grayscale brightness-50"
-          />
-          <div className="absolute inset-0 bg-blue/80 backdrop-blur-sm" />
-          <div className="absolute inset-0 tech-grid opacity-10" />
-        </div>
-
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 text-center space-y-16 relative z-10">
-          <FadeIn className="space-y-6">
-            <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter">
-              Need a <span className="text-red italic">bespoke</span> model?
-            </h2>
-            <p className="text-lg text-white/40 max-w-xl mx-auto leading-relaxed">
-              Our consulting team works directly with your project leads to develop 
-              tailored procurement and logistics frameworks.
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
+              End-to-End <span className="text-cyan">Infrastructure</span> Services
+            </h1>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <p className="text-xl text-white/50 max-w-2xl leading-relaxed">
+              From initial consultation to ongoing maintenance, we provide comprehensive services to keep your network running at peak performance.
             </p>
           </FadeIn>
+        </div>
+      </section>
+
+      {/* Services Grid */}
+      <section className="container-wide pb-32">
+        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service) => (
+            <StaggerItem 
+              key={service.title} 
+              className="group bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-2xl hover:border-cyan/30 transition-all duration-300 relative overflow-hidden h-full flex flex-col"
+            >
+              <div className="absolute top-8 right-10 text-5xl font-black text-white/5 select-none transition-colors group-hover:text-cyan/5">
+                {service.code}
+              </div>
+              
+              <div className="w-14 h-14 bg-cyan/10 rounded-xl flex items-center justify-center mb-8 group-hover:bg-cyan/20 transition-colors">
+                <service.icon className="h-7 w-7 text-cyan" />
+              </div>
+
+              <div className="space-y-4 flex-grow">
+                <h3 className="text-2xl font-bold text-white tracking-tight">{service.title}</h3>
+                <p className="text-white/50 leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+
+              <div className="mt-10 pt-8 border-t border-white/5 flex items-center justify-between">
+                <span className="text-[10px] font-bold text-white/20 uppercase tracking-widest">Service Item</span>
+                <Link href="/contact" className="h-10 w-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 group-hover:border-cyan group-hover:text-cyan transition-all">
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+      </section>
+
+      {/* CTA Section */}
+      <section className="container-wide">
+        <div className="bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-[32px] p-12 md:p-20 text-center space-y-10 relative overflow-hidden">
+          <div className="absolute -top-24 -right-24 w-64 h-64 bg-cyan/10 blur-[100px] rounded-full" />
           
-          <FadeIn delay={0.3} className="flex flex-col sm:flex-row justify-center gap-8 pt-4">
-            <Button asChild size="lg" className="bg-red hover:bg-red/90 text-white font-bold h-16 px-12 rounded-full transition-all uppercase tracking-[0.2em] text-[11px] shadow-2xl glow-primary">
-              <Link href="/contact">Initialize Consultation</Link>
-            </Button>
-            <Button asChild variant="ghost" size="lg" className="border border-white/20 text-white hover:bg-white/10 font-bold h-16 px-12 rounded-full transition-all uppercase tracking-[0.2em] text-[11px]">
-              <Link href="/contact">View Case Studies</Link>
+          <FadeIn className="space-y-6">
+            <h2 className="text-4xl md:text-6xl font-black text-white leading-tight">
+              Need a Customized Service Plan?
+            </h2>
+            <p className="text-lg text-white/50 max-w-2xl mx-auto">
+              Our engineering team is ready to discuss your specific infrastructure requirements and build a custom support framework for your project.
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={0.2}>
+            <Button asChild size="lg" className="bg-cyan hover:bg-cyan/90 text-navy font-bold h-14 px-10 rounded-lg cyan-glow">
+              <Link href="/contact">Talk to an Engineer</Link>
             </Button>
           </FadeIn>
         </div>

@@ -5,10 +5,9 @@ import { useState, useMemo } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useParams, notFound } from "next/navigation"
-import { Package, ArrowRight, Cpu, Network, Database, Settings, ShieldCheck, Wrench, Terminal, LucideIcon } from "lucide-react"
+import { Package, ArrowRight, Cpu, Network, Database, Settings, ShieldCheck, Wrench, Search, LucideIcon } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
 
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { products, productCategories } from "@/data/products"
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations"
@@ -52,36 +51,33 @@ export default function CategoryPage() {
   const Icon = categoryIcons[categoryId] || Package
 
   return (
-    <div className="bg-white">
-      {/* Hero Section - Themed to Category */}
-      <section className="relative h-[40vh] flex items-center overflow-hidden border-b border-gray-100">
+    <div className="bg-navy min-h-screen">
+      {/* ─── HERO ─── */}
+      <section className="relative h-[40vh] flex items-center pt-24 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/image.png"
             alt={category.name}
             fill
-            className="object-cover grayscale brightness-[0.15] contrast-[1.4]"
+            className="object-cover opacity-20"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue/90 via-blue/60 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy/60 via-navy/80 to-navy z-10" />
         </div>
 
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 w-full relative z-20">
+        <div className="container-wide w-full relative z-20">
           <div className="max-w-4xl space-y-6">
-            <FadeIn direction="right" delay={0.2}>
-              <div className="inline-flex items-center gap-4 px-1 py-1 group cursor-default">
-                <div className="h-px w-8 bg-red/50 group-hover:w-12 transition-all duration-500" />
-                <span className="text-[10px] font-bold tracking-[0.4em] text-red/80 uppercase font-mono">
-                  SECTOR_SPECIFIC_VIEW // {categoryId.toUpperCase()}
-                </span>
+            <FadeIn>
+              <div className="inline-flex items-center gap-3 bg-cyan/10 border border-cyan/20 rounded-full px-4 py-1.5">
+                <span className="text-[10px] font-black text-cyan uppercase tracking-[0.3em]">Sector Specific View // {categoryId.toUpperCase()}</span>
               </div>
             </FadeIn>
-            <FadeIn delay={0.4}>
+            <FadeIn delay={0.1}>
               <div className="flex items-center gap-6">
                 <div className="h-16 w-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-xl">
-                  <Icon className="h-8 w-8 text-red" />
+                  <Icon className="h-8 w-8 text-cyan" />
                 </div>
-                <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight uppercase">
+                <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight uppercase">
                   {category.name}
                 </h1>
               </div>
@@ -90,36 +86,36 @@ export default function CategoryPage() {
         </div>
       </section>
 
-      {/* Local Command Bar */}
-      <section className="sticky top-20 z-40 bg-white/95 backdrop-blur-xl border-b border-gray-100 py-6">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
+      {/* ─── COMMAND BAR ─── */}
+      <section className="sticky top-24 z-40 bg-navy/80 backdrop-blur-xl border-y border-white/10 py-6">
+        <div className="container-wide flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-6">
-             <Link href="/products" className="text-[10px] font-bold text-blue/40 hover:text-red uppercase tracking-widest transition-colors flex items-center gap-2">
+             <Link href="/products" className="text-[10px] font-black text-white/40 hover:text-cyan uppercase tracking-widest transition-colors flex items-center gap-2">
                <ArrowRight className="h-3 w-3 rotate-180" /> Back to Master Catalog
              </Link>
-             <div className="h-4 w-px bg-gray-100 hidden md:block" />
+             <div className="h-4 w-px bg-white/10 hidden md:block" />
              <div className="flex items-center gap-3">
-               <div className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
-               <p className="text-[10px] font-bold text-blue uppercase tracking-widest">{category.name} Protocol Active</p>
+               <div className="w-2 h-2 rounded-full bg-cyan animate-pulse" />
+               <p className="text-[10px] font-black text-white uppercase tracking-widest">{category.name} Protocol Active</p>
              </div>
           </div>
 
           <div className="relative w-full md:w-80 group">
-            <Terminal className="absolute left-4 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-blue/30 group-focus-within:text-red transition-colors" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-white/30 group-focus-within:text-cyan transition-colors" />
             <input
               type="text"
               placeholder="FILTER_WITHIN_SECTOR..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-gray-50 border border-gray-100 focus:border-red focus:bg-white pl-10 pr-6 py-3 rounded-full text-[11px] font-bold text-blue placeholder:text-blue/20 transition-all outline-none uppercase tracking-widest"
+              className="w-full bg-white/5 border border-white/10 focus:border-cyan/50 focus:bg-white/10 pl-11 pr-6 py-3.5 rounded-lg text-[11px] font-black text-white placeholder:text-white/20 transition-all outline-none uppercase tracking-widest"
             />
           </div>
         </div>
       </section>
 
-      {/* Product Matrix */}
-      <section className="py-24 tech-grid min-h-[600px]">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+      {/* ─── PRODUCTS GRID ─── */}
+      <section className="py-24">
+        <div className="container-wide">
           <AnimatePresence mode="wait">
             {filteredProducts.length === 0 ? (
               <motion.div 
@@ -127,14 +123,14 @@ export default function CategoryPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                className="py-40 text-center rounded-[3rem] bg-gray-50/50 border border-dashed border-gray-200"
+                className="py-40 text-center rounded-3xl bg-white/5 border border-dashed border-white/10"
               >
-                <Package className="h-16 w-16 text-blue/5 mx-auto mb-6" />
-                <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-blue/20">Zero matches in sector protocol</p>
+                <Package className="h-16 w-16 text-white/5 mx-auto mb-6" />
+                <p className="text-[11px] font-black uppercase tracking-[0.4em] text-white/20">Zero matches in sector protocol</p>
                 <Button 
                   variant="ghost" 
                   onClick={() => setSearchQuery("")}
-                  className="mt-8 text-red font-bold text-[10px] uppercase tracking-widest"
+                  className="mt-8 text-cyan font-black text-xs uppercase tracking-widest hover:bg-cyan/10"
                 >
                   Clear Sector Filter
                 </Button>
@@ -142,60 +138,57 @@ export default function CategoryPage() {
             ) : (
               <StaggerContainer 
                 key="grid"
-                className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
               >
                 {filteredProducts.map((product) => {
                   return (
                     <StaggerItem 
                       key={product.id} 
-                      className={cn(
-                        "group bg-white p-8 rounded-[2rem] border border-gray-100 hover:border-red/20 hover:shadow-2xl transition-all duration-500 relative flex flex-col justify-between min-h-[500px] overflow-hidden"
-                      )}
+                      className="group bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl hover:border-cyan/30 transition-all duration-300 relative flex flex-col justify-between min-h-[500px] overflow-hidden"
                     >
-                      <div className="absolute -right-8 -top-8 h-48 w-48 bg-blue/[0.02] rounded-full group-hover:bg-red/[0.03] transition-colors duration-700" />
-                      <Icon className="absolute -right-4 -bottom-4 h-32 w-32 text-blue/[0.01] group-hover:text-red/[0.03] transition-colors duration-700" />
+                      <div className="absolute -right-8 -top-8 h-48 w-48 bg-cyan/[0.02] rounded-full group-hover:bg-cyan/[0.05] transition-colors" />
                       
                       <div className="space-y-6 relative z-10">
                         <div className="flex justify-between items-start">
-                          <div className="px-3 py-1 rounded bg-blue/5 border border-blue/5 text-[8px] font-mono font-bold text-blue/40 uppercase tracking-widest group-hover:text-red group-hover:border-red/10 transition-all">
+                          <div className="px-3 py-1 bg-cyan/10 border border-cyan/20 text-[10px] font-black text-cyan uppercase tracking-widest rounded-md">
                             {product.code}
                           </div>
-                          <Icon className="h-4 w-4 text-blue/20 group-hover:text-red transition-colors" />
+                          <Icon className="h-5 w-5 text-white/20 group-hover:text-cyan transition-colors" />
                         </div>
 
                         {product.image && (
-                          <div className="relative w-full h-44 overflow-hidden rounded-xl border border-gray-50 bg-gray-50/50 p-6">
+                          <div className="relative w-full h-48 overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] p-6">
                             <Image 
                               src={product.image} 
                               alt={product.name}
                               fill
-                              className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
+                              className="object-contain p-4 group-hover:scale-110 transition-transform duration-500"
                             />
                           </div>
                         )}
                         
                         <div className="space-y-3">
-                          <h3 className="text-xl font-bold text-blue leading-tight group-hover:text-red transition-colors line-clamp-2">
+                          <h3 className="text-xl font-bold text-white leading-tight group-hover:text-cyan transition-colors line-clamp-2">
                             {product.name}
                           </h3>
                           {product.description && (
-                            <p className="text-[12px] text-blue/50 leading-relaxed line-clamp-3 font-medium">
+                            <p className="text-sm text-white/40 leading-relaxed line-clamp-3">
                               {product.description}
                             </p>
                           )}
                         </div>
                       </div>
 
-                      <div className="relative z-10 pt-6 border-t border-gray-50 flex items-center justify-between">
+                      <div className="relative z-10 pt-6 border-t border-white/5 flex items-center justify-between">
                         <div className="space-y-1">
-                          <p className="text-[8px] font-bold text-blue/20 uppercase tracking-[0.2em]">Deployment Sector</p>
-                          <p className="text-[10px] font-bold text-blue uppercase tracking-widest">{category.name}</p>
+                          <p className="text-[9px] font-black text-white/20 uppercase tracking-[0.2em]">Deployment Sector</p>
+                          <p className="text-[10px] font-black text-white/60 uppercase tracking-widest">{category.name}</p>
                         </div>
                         <Link 
                           href="/contact" 
-                          className="h-12 w-12 rounded-full border border-gray-100 flex items-center justify-center hover:bg-red hover:text-white hover:border-red transition-all shadow-sm hover:shadow-xl group/btn"
+                          className="h-12 w-12 rounded-full border border-white/10 flex items-center justify-center text-white/40 group-hover:border-cyan group-hover:text-cyan transition-all cyan-glow"
                         >
-                          <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-0.5 transition-transform" />
+                          <ArrowRight className="h-4 w-4" />
                         </Link>
                       </div>
                     </StaggerItem>

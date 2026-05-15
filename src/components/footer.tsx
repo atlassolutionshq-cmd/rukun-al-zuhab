@@ -1,8 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
-import { ArrowUpRight } from "lucide-react"
+import { ArrowRight, Phone, MapPin, Mail, Share2, Globe } from "lucide-react"
 
 import { FadeIn } from "@/components/animations"
 
@@ -14,55 +13,47 @@ const navLinks = [
   { href: "/contact", label: "Contact" },
 ]
 
-const legalLinks = [
-  { href: "/privacy", label: "Privacy Policy" },
-  { href: "/terms", label: "Terms of Service" },
-]
-
 export function Footer() {
   return (
-    <footer className="bg-white border-t border-gray-100 pt-24 pb-12">
-      <FadeIn className="max-w-[1400px] mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-24">
-          {/* Brand & Mission */}
-          <div className="lg:col-span-5 space-y-10">
-            <Link href="/" className="inline-block transition-opacity hover:opacity-80">
-              <Image
-                src="/footer-logos.webp"
-                alt="Rukun Al Zuhab"
-                width={280}
-                height={80}
-                className="h-16 w-auto object-contain"
-              />
+    <footer className="bg-navy border-t border-white/10 pt-24 pb-12 overflow-hidden">
+      <FadeIn className="container-wide">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24">
+          {/* Brand */}
+          <div className="lg:col-span-5 space-y-8">
+            <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
+              <div className="w-10 h-10 bg-cyan flex items-center justify-center rounded-sm">
+                <span className="text-navy font-black text-2xl">R</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-white font-black text-lg leading-none tracking-tight">RUKUN AL ZUHAB</span>
+                <span className="text-cyan font-bold text-[10px] leading-tight tracking-[0.2em]">TRADING CO.</span>
+              </div>
             </Link>
-            <p className="text-2xl font-bold tracking-tight text-blue max-w-md leading-snug">
-              Bridging global excellence with local industrial requirements since 1999.
+            <p className="text-xl text-white/50 max-w-md leading-relaxed">
+              Bridging global excellence with local industrial requirements since 1999. The foundation of Saudi Arabia's connected future.
             </p>
-            <div className="flex flex-col sm:flex-row gap-8 pt-4">
-              <div className="space-y-2">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Headquarters</p>
-                <p className="text-sm font-medium text-blue">Riyadh, Saudi Arabia</p>
-              </div>
-              <div className="space-y-2">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Direct Line</p>
-                <p className="text-sm font-medium text-blue">+966 11 XXX XXXX</p>
-              </div>
+            <div className="flex gap-4">
+              {[Share2, Globe, Mail].map((Icon, i) => (
+                <Link key={i} href="#" className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-cyan hover:border-cyan/30 transition-all">
+                  <Icon className="h-5 w-5" />
+                </Link>
+              ))}
             </div>
           </div>
 
-          {/* Navigation Grid */}
-          <div className="lg:col-span-3 lg:offset-1 grid grid-cols-1 gap-12">
+          {/* Navigation */}
+          <div className="lg:col-span-3 grid grid-cols-1 gap-8">
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-red mb-8">Direct Access</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-cyan mb-8">Direct Access</p>
               <ul className="space-y-4">
                 {navLinks.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-lg font-bold text-blue hover:text-red transition-colors inline-flex items-center group"
+                      className="text-white/60 hover:text-cyan transition-colors flex items-center gap-2 group"
                     >
+                      <ArrowRight className="h-3 w-3 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
                       {link.label}
-                      <ArrowUpRight className="h-4 w-4 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all ml-1" />
                     </Link>
                   </li>
                 ))}
@@ -70,36 +61,44 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Newsletter / Contact CTA */}
+          {/* Contact */}
           <div className="lg:col-span-4 space-y-10">
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-red mb-8">Strategic Updates</p>
-              <p className="text-blue/60 mb-8 text-sm leading-relaxed">
-                Join our corporate network for technical briefs and regional market analysis.
-              </p>
-              <form className="relative group">
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  className="w-full bg-transparent border-b border-gray-200 py-4 text-blue placeholder:text-gray-300 focus:border-red focus:outline-none transition-colors"
-                />
-                <button className="absolute right-0 bottom-4 text-[10px] font-bold uppercase tracking-widest text-blue hover:text-red transition-colors">
-                  Subscribe
-                </button>
-              </form>
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-cyan mb-8">Contact Desk</p>
+              <ul className="space-y-6">
+                <li className="flex gap-4 items-start">
+                  <MapPin className="h-5 w-5 text-cyan shrink-0" />
+                  <span className="text-white/60 text-sm leading-relaxed">
+                    Olaya Riyadh,<br />
+                    P.O Box : 335119 - Riyadh 11341
+                  </span>
+                </li>
+                <li className="flex gap-4 items-center">
+                  <Phone className="h-5 w-5 text-cyan shrink-0" />
+                  <a href="tel:+966550602197" className="text-white/60 hover:text-cyan transition-colors text-sm font-bold">
+                    +966 55 060 2197
+                  </a>
+                </li>
+                <li className="flex gap-4 items-center">
+                  <Mail className="h-5 w-5 text-cyan shrink-0" />
+                  <a href="mailto:info@rukunalzuhab.com" className="text-white/60 hover:text-cyan transition-colors text-sm">
+                    info@rukunalzuhab.com
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-12 border-t border-gray-50 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-400">
-          <div className="text-center md:text-left">
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20">
             &copy; {new Date().getFullYear()} Rukun Al Zuhab Trading Co. All rights reserved.
-          </div>
-          <div className="flex gap-10">
-            {legalLinks.map((link) => (
-              <Link key={link.label} href={link.href} className="hover:text-blue transition-colors">
-                {link.label}
+          </p>
+          <div className="flex gap-8">
+            {["Privacy Policy", "Terms of Service"].map((label) => (
+              <Link key={label} href="#" className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20 hover:text-cyan transition-colors">
+                {label}
               </Link>
             ))}
           </div>

@@ -37,7 +37,7 @@ function Particles({ count = 5000 }) {
       </bufferGeometry>
       <pointsMaterial
         size={0.015}
-        color="#8B0000"
+        color="#06b6d4"
         sizeAttenuation={true}
         transparent={true}
         opacity={0.4}
@@ -57,8 +57,8 @@ function Grid() {
 
   return (
     <group ref={gridRef}>
-      <gridHelper args={[100, 50, "#8B0000", "#1a1a1a"]} position={[0, -10, 0]} rotation={[0, 0, 0]} />
-      <gridHelper args={[100, 50, "#8B0000", "#1a1a1a"]} position={[0, -10, -100]} rotation={[0, 0, 0]} />
+      <gridHelper args={[100, 50, "#06b6d4", "#020617"]} position={[0, -10, 0]} rotation={[0, 0, 0]} />
+      <gridHelper args={[100, 50, "#06b6d4", "#020617"]} position={[0, -10, -100]} rotation={[0, 0, 0]} />
     </group>
   )
 }
@@ -66,7 +66,7 @@ function Grid() {
 export function TechBackground() {
   return (
     <div className="fixed inset-0 z-[-1] bg-[#020617] pointer-events-none">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,0,0,0.15),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.15),transparent_70%)]" />
       <Canvas camera={{ position: [0, 0, 20], fov: 60 }}>
         <Particles count={2000} />
         <Grid />

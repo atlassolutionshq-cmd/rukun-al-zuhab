@@ -6,41 +6,42 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Rukun Al Zuhab - Logo Matched Palette */
-  --background: oklch(0.99 0.002 260);
-  --foreground: oklch(0.12 0.02 260);
+  /* Rukun Al Zuhab - High-Tech Navy & Cyan Palette */
+  --background: oklch(0.12 0.03 260);
+  --foreground: oklch(0.98 0.01 260);
   
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.12 0.02 260);
+  --card: oklch(0.15 0.04 260);
+  --card-foreground: oklch(0.98 0.01 260);
   
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.12 0.02 260);
+  --popover: oklch(0.15 0.04 260);
+  --popover-foreground: oklch(0.98 0.01 260);
   
-  /* Primary: Refined Industrial Red */
-  --primary: oklch(0.52 0.19 25);
-  --primary-foreground: oklch(0.98 0 0);
+  /* Primary: Vibrant Cyan */
+  --primary: oklch(0.70 0.15 200);
+  --primary-foreground: oklch(0.12 0.03 260);
   
-  /* Secondary: Deep Industrial Blue */
-  --secondary: oklch(0.25 0.06 260);
-  --secondary-foreground: oklch(0.98 0 0);
+  /* Secondary: Deep Navy */
+  --secondary: oklch(0.18 0.05 260);
+  --secondary-foreground: oklch(0.98 0.01 260);
   
-  --muted: oklch(0.97 0.005 260);
-  --muted-foreground: oklch(0.25 0.02 260);
+  --muted: oklch(0.20 0.04 260);
+  --muted-foreground: oklch(0.70 0.02 260);
   
-  /* Accent: Refined Industrial Red */
-  --accent: oklch(0.52 0.19 25);
-  --accent-foreground: oklch(0.98 0 0);
+  /* Accent: Cyan Highlight */
+  --accent: oklch(0.70 0.15 200);
+  --accent-foreground: oklch(0.12 0.03 260);
   
   --destructive: oklch(0.45 0.19 25);
-  --border: oklch(0.92 0.005 260);
-  --input: oklch(0.92 0.005 260);
-  --ring: oklch(0.52 0.19 25 / 0.5);
+  --border: oklch(0.25 0.04 260);
+  --input: oklch(0.25 0.04 260);
+  --ring: oklch(0.70 0.15 200 / 0.5);
   
   /* Custom Brand Variables */
-  --brand-red: oklch(0.52 0.19 25);
-  --brand-blue: oklch(0.25 0.06 260);
+  --brand-cyan: oklch(0.70 0.15 200);
+  --brand-navy: oklch(0.12 0.03 260);
+  --brand-navy-light: oklch(0.18 0.05 260);
   
-  --radius: 0.5rem;
+  --radius: 0.75rem;
 }
 
 @theme inline {
@@ -62,16 +63,15 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Brand Specific & Legacy Mapping */
-  --color-red: var(--brand-red);
-  --color-blue: var(--brand-blue);
-  --color-navy: var(--brand-blue);
-  --color-gold: var(--brand-red);
+  /* Brand Specific Mapping */
+  --color-cyan: var(--brand-cyan);
+  --color-navy: var(--brand-navy);
+  --color-navy-light: var(--brand-navy-light);
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50 selection:bg-red/20;
+    @apply border-border outline-ring/50 selection:bg-cyan/20;
   }
   body {
     @apply bg-background text-foreground antialiased;
@@ -92,27 +92,24 @@
     @apply py-24 md:py-32;
   }
   .link-hover {
-    @apply relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-red after:transition-all hover:after:w-full;
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-cyan after:transition-all hover:after:w-full;
   }
   
   /* Futuristic Tech Utilities */
   .glass-card {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.05)];
+    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.1)];
   }
   .glass-futuristic {
-    @apply bg-white/10 backdrop-blur-2xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-all hover:bg-white/15 hover:border-white/30;
+    @apply bg-white/10 backdrop-blur-2xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-all hover:bg-white/15 hover:border-white/30;
   }
-  .glow-primary {
-    @apply shadow-[0_0_30px_var(--brand-red)/0.2] hover:shadow-[0_0_50px_var(--brand-red)/0.4];
+  .glow-cyan {
+    @apply shadow-[0_0_30px_var(--brand-cyan)/0.2] hover:shadow-[0_0_50px_var(--brand-cyan)/0.4];
   }
-  .glow-secondary {
-    @apply shadow-[0_0_30px_var(--brand-blue)/0.2] hover:shadow-[0_0_50px_var(--brand-blue)/0.4];
-  }
-  .text-gradient-brand {
-    @apply bg-gradient-to-r from-blue to-red bg-clip-text text-transparent;
+  .text-gradient-cyan {
+    @apply bg-gradient-to-r from-cyan to-white bg-clip-text text-transparent;
   }
   .glass-glow {
-    @apply relative overflow-hidden after:absolute after:inset-0 after:bg-gradient-to-tr after:from-red/5 after:to-transparent after:opacity-0 hover:after:opacity-100 after:transition-opacity;
+    @apply relative overflow-hidden after:absolute after:inset-0 after:bg-gradient-to-tr after:from-cyan/5 after:to-transparent after:opacity-0 hover:after:opacity-100 after:transition-opacity;
   }
 
   .no-scrollbar::-webkit-scrollbar {
@@ -150,12 +147,12 @@
   }
 
   /* Futuristic Interactive Elements */
-  .whatsapp-glow {
-    @apply shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:shadow-[0_0_40px_rgba(37,211,102,0.6)];
+  .cyan-glow {
+    @apply shadow-[0_0_20px_rgba(34,211,238,0.4)] hover:shadow-[0_0_40px_rgba(34,211,238,0.6)];
   }
   
   .glass-input {
-    @apply bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white focus:border-red/50 focus:bg-white/10 outline-none transition-all;
+    @apply bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-white focus:border-cyan/50 focus:bg-white/10 outline-none transition-all;
   }
 }
 
