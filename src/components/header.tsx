@@ -11,6 +11,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 import { motion, AnimatePresence } from "framer-motion"
 import { productCategories } from "@/data/products"
+import { Magnetic } from "@/components/animations"
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -25,23 +26,39 @@ export function Header() {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = React.useState(false)
   const [isProductsHovered, setIsProductsHovered] = React.useState(false)
+  const [scrolled, setScrolled] = React.useState(false)
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
-    <header className="absolute top-0 z-50 w-full bg-transparent border-b border-white/10">
-      <div className="max-w-[1500px] mx-auto px-6 md:px-10 flex h-24 items-center justify-between">
+    <header 
+      className={cn(
+        "fixed top-0 z-50 w-full transition-all duration-500",
+        scrolled 
+          ? "bg-navy/80 backdrop-blur-xl border-b border-white/5 py-4" 
+          : "bg-transparent border-b border-white/10 py-6"
+      )}
+    >
+      <div className="max-w-[1500px] mx-auto px-6 md:px-10 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
-          <div className="w-10 h-10 bg-cyan flex items-center justify-center rounded-sm">
+        <Link href="/" className="flex items-center gap-4 transition-opacity hover:opacity-90">
+          <div className="w-12 h-12 bg-cyan flex items-center justify-center rounded-xl shadow-[0_0_20px_rgba(34,211,238,0.3)]">
             <span className="text-navy font-black text-2xl">R</span>
           </div>
           <div className="flex flex-col">
-            <span className="text-white font-black text-lg leading-none tracking-tight">RUKUN AL ZUHAB</span>
-            <span className="text-cyan font-bold text-[10px] leading-tight tracking-[0.2em]">TRADING CO.</span>
+            <span className="text-white font-black text-xl leading-none tracking-tight">RUKUN AL ZUHAB</span>
+            <span className="label-tech text-[10px] mt-1">TRADING CO.</span>
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden xl:flex items-center gap-8">
+        <nav className="hidden xl:flex items-center gap-10">
           {navItems.map((item) => {
             if (item.hasDropdown) {
               return (
@@ -54,32 +71,38 @@ export function Header() {
                   <Link
                     href={item.href}
                     className={cn(
-                      "text-[13px] font-semibold transition-colors flex items-center gap-1",
+                      "text-[12px] font-black uppercase tracking-widest transition-colors flex items-center gap-2",
                       pathname?.startsWith("/products")
                         ? "text-cyan"
-                        : "text-white/80 hover:text-white"
+                        : "text-white/60 hover:text-white"
                     )}
                   >
                     {item.label}
-                    <ChevronDown className={cn("h-3 w-3 transition-transform", isProductsHovered && "rotate-180")} />
+                    <ChevronDown className={cn("h-3 w-3 transition-transform duration-300", isProductsHovered && "rotate-180")} />
                   </Link>
 
                   <AnimatePresence>
                     {isProductsHovered && (
                       <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-navy-light/95 backdrop-blur-xl border border-white/10 shadow-2xl rounded-xl overflow-hidden py-3 z-[100]"
+                        initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 15, scale: 0.95 }}
+                        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                        className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-72 bg-navy/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.4)] rounded-2xl overflow-hidden py-4 z-[100]"
                       >
+                        <div className="hud-corner-tl" />
+                        <div className="hud-corner-br" />
+                        <div className="px-6 pb-4 mb-2 border-b border-white/5">
+                          <p className="label-tech text-[9px]">Master Database</p>
+                        </div>
                         {productCategories.map((cat) => (
                           <Link
                             key={cat.id}
                             href={cat.id === 'all' ? '/products' : `/products/${cat.id}`}
-                            className="flex items-center px-6 py-2.5 hover:bg-white/5 transition-colors group"
+                            className="flex items-center px-6 py-3 hover:bg-white/5 transition-colors group/item"
                           >
-                            <span className="text-[12px] font-medium text-white/70 group-hover:text-cyan transition-colors">
-                              {cat.name}
+                            <span className="text-[11px] font-bold text-white/50 group-hover/item:text-cyan group-hover/item:translate-x-1 transition-all">
+                              {cat.name.toUpperCase()}
                             </span>
                           </Link>
                         ))}
@@ -96,10 +119,10 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "text-[13px] font-semibold transition-colors",
+                  "text-[12px] font-black uppercase tracking-widest transition-colors",
                   isActive
                     ? "text-cyan"
-                    : "text-white/80 hover:text-white"
+                    : "text-white/60 hover:text-white"
                 )}
               >
                 {item.label}
@@ -109,14 +132,18 @@ export function Header() {
         </nav>
 
         {/* Right Actions */}
-        <div className="hidden lg:flex items-center gap-8">
-          <a href="tel:+966550602197" className="flex items-center gap-2 text-white/90 hover:text-cyan transition-colors">
-            <Phone className="h-4 w-4 text-cyan" />
-            <span className="text-sm font-bold">+966 55 060 2197</span>
+        <div className="hidden lg:flex items-center gap-10">
+          <a href="tel:+966550602197" className="flex items-center gap-3 text-white/80 hover:text-white transition-colors group">
+            <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-cyan group-hover:bg-cyan/5 transition-all">
+              <Phone className="h-3.5 w-3.5 text-cyan" />
+            </div>
+            <span className="text-sm font-black">+966 55 060 2197</span>
           </a>
-          <Button asChild className="bg-cyan hover:bg-cyan/90 text-navy font-bold rounded-sm px-6 h-11 transition-all cyan-glow">
-            <Link href="/contact">Get a Quote</Link>
-          </Button>
+          <Magnetic strength={0.3}>
+            <Button asChild className="bg-cyan hover:bg-cyan/90 text-navy font-black rounded-xl px-10 h-14 transition-all cyan-glow">
+              <Link href="/contact">Get a Quote</Link>
+            </Button>
+          </Magnetic>
         </div>
 
         {/* Mobile Menu Toggle */}

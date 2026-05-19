@@ -1,78 +1,101 @@
 "use client"
 
-import React, { useRef, useMemo } from "react"
+import React, { useRef, useMemo, Suspense } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import * as THREE from "three"
+import { Points, PointMaterial, Float, MeshDistortMaterial, Sphere, Torus, Box } from "@react-three/drei"
 
 function Particles({ count = 5000 }) {
   const points = useRef<THREE.Points>(null!)
-  
-  const particlesPosition = useMemo(() => {
-    const positions = new Float32Array(count * 3)
-    for (let i = 0; i < count; i++) {
-      const distance = 40
-      const theta = THREE.MathUtils.randFloatSpread(360)
-      const phi = THREE.MathUtils.randFloatSpread(360)
 
-      positions[i * 3] = distance * Math.sin(theta) * Math.cos(phi)
-      positions[i * 3 + 1] = distance * Math.sin(theta) * Math.sin(phi)
-      positions[i * 3 + 2] = distance * Math.cos(theta)
+  const positions = useMemo(() => {
+    const pos = new Float32Array(count * 3)
+    for (let i = 0; i < count; i++) {
+      pos[i * 3] = (Math.random() - 0.5) * 50
+      pos[i * 3 + 1] = (Math.random() - 0.5) * 50
+      pos[i * 3 + 2] = (Math.random() - 0.5) * 50
     }
-    return positions
+    return pos
   }, [count])
 
   useFrame((state) => {
-    const { clock } = state
-    points.current.rotation.y = clock.getElapsedTime() * 0.05
-    points.current.rotation.x = clock.getElapsedTime() * 0.02
+    const time = state.clock.elapsedTime
+    points.current.rotation.y = time * 0.05
+    points.current.rotation.x = time * 0.03
   })
 
   return (
-    <points ref={points}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          args={[particlesPosition, 3]}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        size={0.015}
-        color="#06b6d4"
+    <Points ref={points} positions={positions} stride={3} frustumCulled={false}>
+      <PointMaterial
+        transparent
+        color="#00f2ff"
+        size={0.05}
         sizeAttenuation={true}
-        transparent={true}
-        opacity={0.4}
+        depthWrite={false}
         blending={THREE.AdditiveBlending}
       />
-    </points>
+    </Points>
+  )
+}
+
+function IndustrialObject({ position, type }: { position: [number, number, number], type: 'torus' | 'box' | 'sphere' }) {
+  const mesh = useRef<THREE.Mesh>(null!)
+  
+  useFrame((state) => {
+    const time = state.clock.getElapsedTime()
+    mesh.current.rotation.x = time * 0.2
+    mesh.current.rotation.y = time * 0.3
+  })
+
+  return (
+    <Float speed={2} rotationIntensity={1} floatIntensity={2}>
+      <mesh position={position} ref={mesh}>
+        {type === 'torus' && <torusGeometry args={[1, 0.4, 16, 100]} />}
+        {type === 'box' && <boxGeometry args={[1.5, 1.5, 1.5]} />}
+        {type === 'sphere' && <sphereGeometry args={[1, 32, 32]} />}
+        <MeshDistortMaterial
+          color="#00f2ff"
+          speed={2}
+          distort={0.4}
+          radius={1}
+          wireframe
+          transparent
+          opacity={0.15}
+        />
+      </mesh>
+    </Float>
   )
 }
 
 function Grid() {
-  const gridRef = useRef<THREE.Group>(null!)
-  
-  useFrame((state) => {
-    const { clock } = state
-    gridRef.current.position.z = (clock.getElapsedTime() * 2) % 10
-  })
-
   return (
-    <group ref={gridRef}>
-      <gridHelper args={[100, 50, "#06b6d4", "#020617"]} position={[0, -10, 0]} rotation={[0, 0, 0]} />
-      <gridHelper args={[100, 50, "#06b6d4", "#020617"]} position={[0, -10, -100]} rotation={[0, 0, 0]} />
-    </group>
+    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -10, 0]}>
+      <planeGeometry args={[100, 100, 50, 50]} />
+      <meshBasicMaterial color="#00f2ff" wireframe transparent opacity={0.05} />
+    </mesh>
   )
 }
 
 export function TechBackground() {
   return (
-    <div className="fixed inset-0 z-[-1] bg-[#020617] pointer-events-none">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.15),transparent_70%)]" />
-      <Canvas camera={{ position: [0, 0, 20], fov: 60 }}>
-        <Particles count={2000} />
-        <Grid />
-        <fog attach="fog" args={["#020617", 10, 50]} />
+    <div className="absolute inset-0 z-0 bg-background pointer-events-none">
+      <Canvas camera={{ position: [0, 0, 20], fov: 75 }}>
+        <Suspense fallback={null}>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} intensity={1} color="#00f2ff" />
+          
+          <Particles count={2000} />
+          
+          <IndustrialObject position={[-10, 5, -5]} type="torus" />
+          <IndustrialObject position={[12, -5, -8]} type="box" />
+          <IndustrialObject position={[-5, -8, -10]} type="sphere" />
+          <IndustrialObject position={[8, 8, -5]} type="torus" />
+          
+          <Grid />
+          <fog attach="fog" args={["#020617", 10, 50]} />
+        </Suspense>
       </Canvas>
-      <div className="absolute inset-0 bg-noise opacity-[0.03] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
     </div>
   )
 }

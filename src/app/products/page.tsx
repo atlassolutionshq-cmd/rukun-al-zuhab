@@ -1,218 +1,224 @@
 "use client"
 
-import * as React from "react"
 import { useState, useMemo } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { Package, ArrowRight, Cpu, Network, Database, Settings, ShieldCheck, Wrench, Terminal, LucideIcon, Search, Phone } from "lucide-react"
-import { AnimatePresence, motion } from "framer-motion"
-
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
 import { products, productCategories } from "@/data/products"
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations"
-
-const categoryIcons: Record<string, LucideIcon> = {
-  fiber: Cpu,
-  copper: Network,
-  "copper-system": ShieldCheck,
-  cabinets: Database,
-  tools: Wrench,
-  accessories: Settings,
-  "rack-system": Database,
-  "data-center-system": Network,
-  "fiber-system": Cpu,
-  all: Package,
-}
+import { Search, Filter, X, ArrowRight, LayoutGrid, List } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import Image from "next/image"
+import Link from "next/link"
+import { motion, AnimatePresence } from "framer-motion"
+import { cn } from "@/lib/utils"
 
 export default function ProductsPage() {
   const [searchQuery, setSearchQuery] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("all")
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
 
   const filteredProducts = useMemo(() => {
-    return products.filter((product) => {
-      const matchesSearch = 
-        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.code.toLowerCase().includes(searchQuery.toLowerCase())
-      return matchesSearch
+    return products.filter((p) => {
+      const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                           p.code.toLowerCase().includes(searchQuery.toLowerCase())
+      const matchesCategory = selectedCategory === "all" || p.category === selectedCategory
+      return matchesSearch && matchesCategory
     })
-  }, [searchQuery])
+  }, [searchQuery, selectedCategory])
 
   return (
-    <div className="bg-navy min-h-screen">
-      {/* ─── HERO ─── */}
-      <section className="relative h-[50vh] flex items-center pt-24 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/image.png"
-            alt="Inventory Management"
-            fill
-            className="object-cover opacity-20"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy/60 via-navy/80 to-navy z-10" />
-        </div>
-
-        <div className="container-wide w-full relative z-20">
-          <div className="max-w-4xl space-y-8">
-            <FadeIn>
-              <div className="inline-flex items-center gap-3 bg-cyan/10 border border-cyan/20 rounded-full px-4 py-1.5">
-                <span className="text-[10px] font-black text-cyan uppercase tracking-[0.3em]">Master Protocol Inventory</span>
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
-                Full Protocol <br />
-                <span className="text-cyan italic">Inventory</span>
-              </h1>
-            </FadeIn>
+    <div className="flex flex-col w-full">
+      {/* Page Hero */}
+      <section className="relative pt-40 pb-20 bg-background border-b">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl">
+            <h2 className="text-[10px] font-black uppercase tracking-[0.5em] text-primary mb-6">Inventory Database</h2>
+            <h1 className="text-4xl md:text-7xl font-black tracking-tighter leading-none mb-8">
+              MASTER <span className="text-primary italic">PROTOCOL</span>
+            </h1>
+            <p className="text-lg md:text-xl font-bold text-muted-foreground">
+              Sourcing the complete chain of structured cabling, fiber systems, and rack solutions.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* ─── COMMAND BAR ─── */}
-      <section className="sticky top-24 z-40 bg-navy/80 backdrop-blur-xl border-y border-white/10 py-6">
-        <div className="container-wide flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-6 overflow-x-auto no-scrollbar w-full md:w-auto">
-             <div className="flex items-center gap-3 shrink-0">
-               <div className="w-2 h-2 rounded-full bg-cyan animate-pulse" />
-               <p className="text-[10px] font-black text-white uppercase tracking-widest">Database Active</p>
-             </div>
-             <div className="h-4 w-px bg-white/10 shrink-0" />
-             <p className="text-[10px] font-black text-white/40 uppercase tracking-widest shrink-0">
-               Total Units: {products.length.toString().padStart(3, '0')}
-             </p>
-          </div>
+      {/* Control Bar */}
+      <section className="sticky top-20 z-50 bg-background/80 backdrop-blur-xl border-b py-6">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
+            {/* Search */}
+            <div className="relative w-full lg:w-96 group">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+              <input 
+                type="text"
+                placeholder="SEARCH_MASTER_DATABASE..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full h-12 bg-secondary/50 border border-border rounded-full pl-12 pr-6 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all uppercase tracking-widest"
+              />
+            </div>
 
-          <div className="relative w-full md:w-96 group">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-white/30 group-focus-within:text-cyan transition-colors" />
-            <input
-              type="text"
-              placeholder="SEARCH_MASTER_DATABASE..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 focus:border-cyan/50 focus:bg-white/10 pl-11 pr-6 py-3.5 rounded-lg text-[11px] font-black text-white placeholder:text-white/20 transition-all outline-none uppercase tracking-widest"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ─── PRODUCTS GRID ─── */}
-      <section className="py-24">
-        <div className="container-wide">
-          <AnimatePresence mode="wait">
-            {filteredProducts.length === 0 ? (
-              <motion.div 
-                key="empty"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                className="py-40 text-center rounded-3xl bg-white/5 border border-dashed border-white/10"
-              >
-                <Package className="h-16 w-16 text-white/5 mx-auto mb-6" />
-                <p className="text-[11px] font-black uppercase tracking-[0.4em] text-white/20">Zero matches in master protocol</p>
-                <Button 
-                  variant="ghost" 
-                  onClick={() => setSearchQuery("")}
-                  className="mt-8 text-cyan font-black text-xs uppercase tracking-widest hover:bg-cyan/10"
+            {/* Categories Scroll */}
+            <div className="flex items-center space-x-2 overflow-x-auto no-scrollbar pb-2 w-full lg:w-auto">
+              {productCategories.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={cn(
+                    "px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition-all border-2",
+                    selectedCategory === cat.id 
+                      ? "bg-primary border-primary text-primary-foreground shadow-lg shadow-primary/20" 
+                      : "bg-background border-border text-muted-foreground hover:border-primary/50"
+                  )}
                 >
-                  Clear Search
-                </Button>
+                  {cat.name}
+                </button>
+              ))}
+            </div>
+
+            {/* View Toggle */}
+            <div className="hidden lg:flex items-center space-x-2 bg-secondary p-1 rounded-full border border-border">
+              <button 
+                onClick={() => setViewMode("grid")}
+                className={cn("p-2 rounded-full transition-all", viewMode === "grid" ? "bg-background text-primary shadow-sm" : "text-muted-foreground")}
+              >
+                <LayoutGrid className="w-4 h-4" />
+              </button>
+              <button 
+                onClick={() => setViewMode("list")}
+                className={cn("p-2 rounded-full transition-all", viewMode === "list" ? "bg-background text-primary shadow-sm" : "text-muted-foreground")}
+              >
+                <List className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Results Section */}
+      <section className="py-12 bg-background min-h-[600px]">
+        <div className="container mx-auto px-4">
+          <div className="mb-8 flex items-center justify-between">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">
+              Showing {filteredProducts.length} results
+            </p>
+            { (searchQuery || selectedCategory !== "all") && (
+              <Button 
+                variant="ghost" 
+                onClick={() => {setSearchQuery(""); setSelectedCategory("all")}}
+                className="h-auto p-0 text-[10px] font-black uppercase tracking-widest text-destructive hover:bg-transparent"
+              >
+                <X className="w-3 h-3 mr-2" /> Clear All Filters
+              </Button>
+            )}
+          </div>
+
+          <AnimatePresence mode="popLayout">
+            {filteredProducts.length > 0 ? (
+              <motion.div 
+                layout
+                className={cn(
+                  "grid gap-8",
+                  viewMode === "grid" 
+                    ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-4" 
+                    : "grid-cols-1"
+                )}
+              >
+                {filteredProducts.map((p) => (
+                  <motion.div
+                    layout
+                    key={p.id}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <ProductItem product={p} viewMode={viewMode} />
+                  </motion.div>
+                ))}
               </motion.div>
             ) : (
-              <StaggerContainer 
-                key="grid"
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="py-32 text-center"
               >
-                {filteredProducts.map((product) => {
-                  const Icon = categoryIcons[product.category] || Package
-                  return (
-                    <StaggerItem 
-                      key={product.id} 
-                      className="group bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl hover:border-cyan/30 transition-all duration-300 relative flex flex-col justify-between min-h-[500px] overflow-hidden"
-                    >
-                      <div className="absolute -right-8 -top-8 h-48 w-48 bg-cyan/[0.02] rounded-full group-hover:bg-cyan/[0.05] transition-colors" />
-                      
-                      <div className="space-y-6 relative z-10">
-                        <div className="flex justify-between items-start">
-                          <div className="px-3 py-1 bg-cyan/10 border border-cyan/20 text-[10px] font-black text-cyan uppercase tracking-widest rounded-md">
-                            {product.code}
-                          </div>
-                          <Icon className="h-5 w-5 text-white/20 group-hover:text-cyan transition-colors" />
-                        </div>
-
-                        {product.image && (
-                          <div className="relative w-full h-48 overflow-hidden rounded-xl border border-white/5 bg-white/[0.02] p-6">
-                            <Image 
-                              src={product.image} 
-                              alt={product.name}
-                              fill
-                              className="object-contain p-4 group-hover:scale-110 transition-transform duration-500"
-                            />
-                          </div>
-                        )}
-                        
-                        <div className="space-y-3">
-                          <h3 className="text-xl font-bold text-white leading-tight group-hover:text-cyan transition-colors line-clamp-2">
-                            {product.name}
-                          </h3>
-                          {product.description && (
-                            <p className="text-sm text-white/40 leading-relaxed line-clamp-3">
-                              {product.description}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="relative z-10 pt-6 border-t border-white/5 flex items-center justify-between">
-                        <div className="space-y-1">
-                          <p className="text-[9px] font-black text-white/20 uppercase tracking-[0.2em]">Deployment Sector</p>
-                          <Link 
-                            href={`/products/${product.category}`}
-                            className="text-[10px] font-black text-white/60 hover:text-cyan uppercase tracking-widest transition-colors"
-                          >
-                            {productCategories.find(c => c.id === product.category)?.name || product.category}
-                          </Link>
-                        </div>
-                        <Link 
-                          href="/contact" 
-                          className="h-12 w-12 rounded-full border border-white/10 flex items-center justify-center text-white/40 group-hover:border-cyan group-hover:text-cyan transition-all cyan-glow"
-                        >
-                          <ArrowRight className="h-4 w-4" />
-                        </Link>
-                      </div>
-                    </StaggerItem>
-                  )
-                })}
-              </StaggerContainer>
+                <div className="w-20 h-20 bg-secondary rounded-full flex items-center justify-center mx-auto mb-8">
+                  <Search className="w-8 h-8 text-muted-foreground/30" />
+                </div>
+                <h3 className="text-2xl font-black uppercase tracking-tighter mb-4">No results found</h3>
+                <p className="text-muted-foreground font-medium">Try adjusting your search or category filters.</p>
+              </motion.div>
             )}
           </AnimatePresence>
         </div>
       </section>
-
-      {/* ─── CTA SECTION ─── */}
-      <section className="py-32 border-t border-white/10">
-        <div className="container-wide text-center space-y-10">
-          <FadeIn className="space-y-6">
-            <span className="text-[11px] font-black text-cyan uppercase tracking-[0.4em]">Project Procurement</span>
-            <h2 className="text-4xl md:text-6xl font-black text-white leading-tight">
-              Direct Technical Desk
-            </h2>
-            <p className="text-lg text-white/40 max-w-2xl mx-auto">
-              Connect with our senior technical desk for high-volume procurement frameworks and specialized industrial sourcing.
-            </p>
-          </FadeIn>
-          
-          <FadeIn delay={0.2} className="flex flex-col sm:flex-row justify-center gap-6">
-            <Button asChild size="lg" className="bg-cyan hover:bg-cyan/90 text-navy font-black h-14 px-10 rounded-lg cyan-glow">
-              <Link href="/contact">Initialize Inquiry</Link>
-            </Button>
-            <a href="tel:+966550602197" className="inline-flex items-center gap-3 text-white/80 hover:text-cyan transition-colors">
-              <Phone className="h-5 w-5 text-cyan" />
-              <span className="font-bold text-lg">+966 55 060 2197</span>
-            </a>
-          </FadeIn>
-        </div>
-      </section>
     </div>
+  )
+}
+
+function ProductItem({ product, viewMode }: { product: any; viewMode: "grid" | "list" }) {
+  if (viewMode === "list") {
+    return (
+      <Link href={`/products/${product.id}`} className="group relative bg-background border border-border rounded-[32px] p-6 hover:border-primary transition-all duration-500 flex items-center space-x-8 shadow-xl shadow-black/[0.02]">
+        <div className="relative w-32 h-32 rounded-[24px] overflow-hidden bg-secondary/30 shrink-0">
+          {product.image ? (
+            <Image 
+              src={product.image} 
+              alt={product.name} 
+              fill 
+              sizes="(max-width: 768px) 128px, 128px"
+              className="object-cover transition-transform duration-700 group-hover:scale-110" 
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-[8px] font-black uppercase tracking-widest text-muted-foreground/20 italic">No Image</div>
+          )}
+        </div>
+        <div className="flex-grow">
+          <div className="flex items-center space-x-3 mb-2">
+            <span className="bg-primary/10 text-primary text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full">{product.code}</span>
+            <span className="text-[8px] font-black uppercase tracking-widest text-muted-foreground">/ {product.category}</span>
+          </div>
+          <h4 className="text-xl font-black uppercase tracking-tight mb-2 group-hover:text-primary transition-colors">{product.name}</h4>
+          <p className="text-sm text-muted-foreground line-clamp-1 font-medium">{product.description || "Premium technical specification for industrial networking."}</p>
+        </div>
+        <div className="w-12 h-12 rounded-full border border-border flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-all shrink-0">
+          <ArrowRight className="w-5 h-5" />
+        </div>
+      </Link>
+    )
+  }
+
+  return (
+    <Link href={`/products/${product.id}`} className="group relative bg-background border border-border rounded-[40px] p-5 hover:border-primary transition-all duration-500 flex flex-col h-full shadow-xl shadow-black/[0.02] overflow-hidden">
+      <div className="relative aspect-square rounded-[32px] overflow-hidden bg-secondary/30 mb-8">
+        {product.image ? (
+          <Image 
+            src={product.image} 
+            alt={product.name} 
+            fill 
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+            className="object-cover transition-transform duration-700 group-hover:scale-110" 
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-[10px] font-black uppercase tracking-widest text-muted-foreground/20 italic">Protocol Null</div>
+        )}
+        <div className="absolute top-4 left-4 bg-background/90 backdrop-blur-md border border-border px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest text-primary">
+          {product.code}
+        </div>
+      </div>
+      <div className="flex flex-col flex-grow px-2">
+        <h4 className="text-md font-black tracking-tight mb-3 group-hover:text-primary transition-colors line-clamp-2 uppercase leading-tight">
+          {product.name}
+        </h4>
+        <p className="text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] mb-8 opacity-60">
+          Sector: {product.category}
+        </p>
+        <div className="mt-auto flex items-center justify-between">
+          <span className="text-[9px] font-black uppercase tracking-[0.2em] text-primary opacity-0 group-hover:opacity-100 transition-opacity">Analyze Unit</span>
+          <div className="w-12 h-12 rounded-full border border-border flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all">
+            <ArrowRight className="w-5 h-5" />
+          </div>
+        </div>
+      </div>
+    </Link>
   )
 }

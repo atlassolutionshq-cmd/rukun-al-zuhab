@@ -1,129 +1,179 @@
-"use client"
-
-import { Laptop, Settings, Factory, ShieldCheck, Headphones, Truck, ArrowRight } from "lucide-react"
-import Link from "next/link"
-
 import { Button } from "@/components/ui/button"
-import { FadeIn, StaggerContainer, StaggerItem } from "@/components/animations"
+import Link from "next/link"
+import { 
+  Laptop, 
+  Settings, 
+  Factory, 
+  ShieldCheck, 
+  Headphones, 
+  Truck, 
+  ArrowRight,
+  Zap,
+  Cpu,
+  Server
+} from "lucide-react"
 
 const services = [
   {
     icon: Laptop,
     title: "Network Design & Consulting",
-    description: "Expert consultation and custom network architecture design tailored to your business requirements and growth plans.",
-    code: "01"
+    desc: "Expert consultation and custom network architecture design tailored to your business requirements and growth plans.",
+    features: ["Topology Design", "Performance Audit", "Security Consulting"]
   },
   {
     icon: Settings,
     title: "Installation & Commissioning",
-    description: "Professional installation of copper, fibre, and rack systems by certified engineers following international standards.",
-    code: "02"
+    desc: "Professional installation of copper, fiber, and rack systems by certified engineers following international standards.",
+    features: ["On-site Deployment", "System Testing", "Full Certification"]
   },
   {
     icon: Factory,
     title: "Custom Manufacturing",
-    description: "Bespoke manufacturing of cables, panels, and rack systems to meet specific project specifications and requirements.",
-    code: "03"
+    desc: "Bespoke manufacturing of cables, panels, and rack systems to meet specific project specifications and requirements.",
+    features: ["Custom Dimensions", "Specific Materials", "Rapid Prototyping"]
   },
   {
     icon: ShieldCheck,
     title: "Testing & Certification",
-    description: "Comprehensive testing and certification of installed infrastructure using industry-standard tools and methodologies.",
-    code: "04"
+    desc: "Comprehensive testing and certification of installed infrastructure using industry-standard tools and methodologies.",
+    features: ["ISO Compliance", "TIA/EIA Standards", "QA Validation"]
   },
   {
     icon: Headphones,
     title: "Maintenance & Support",
-    description: "24/7 technical support and preventive maintenance programs to ensure maximum uptime and network reliability.",
-    code: "05"
+    desc: "24/7 technical support and preventive maintenance programs to ensure maximum uptime and network reliability.",
+    features: ["SLA Support", "Remote Monitoring", "Preventive Care"]
   },
   {
     icon: Truck,
     title: "Supply & Logistics",
-    description: "Efficient supply chain management and logistics for timely delivery of networking products across the region.",
-    code: "06"
+    desc: "Efficient supply chain management and logistics for timely delivery of networking products across the region.",
+    features: ["Regional Reach", "Express Delivery", "Secure Handling"]
   },
 ]
 
 export default function ServicesPage() {
   return (
-    <div className="bg-navy min-h-screen pt-32 pb-20">
-      {/* Header Section */}
-      <section className="container-wide mb-24">
-        <div className="max-w-4xl space-y-8">
-          <FadeIn>
-            <div className="inline-flex items-center gap-3 bg-cyan/10 border border-cyan/20 rounded-full px-4 py-1.5">
-              <span className="text-[10px] font-black text-cyan uppercase tracking-[0.3em]">Our Services</span>
-            </div>
-          </FadeIn>
-          <FadeIn delay={0.1}>
-            <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
-              End-to-End <span className="text-cyan">Infrastructure</span> Services
+    <div className="flex flex-col w-full">
+      {/* Page Hero */}
+      <section className="relative pt-40 pb-24 bg-background overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-secondary/30 -skew-x-12 translate-x-1/4" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl">
+            <h2 className="text-[10px] font-black uppercase tracking-[0.5em] text-primary mb-6">Service Capabilities</h2>
+            <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9]">
+              INTEGRATED <br /> <span className="text-primary italic">SOLUTIONS</span>
             </h1>
-          </FadeIn>
-          <FadeIn delay={0.2}>
-            <p className="text-xl text-white/50 max-w-2xl leading-relaxed">
-              From initial consultation to ongoing maintenance, we provide comprehensive services to keep your network running at peak performance.
+            <p className="text-xl md:text-2xl font-bold text-muted-foreground leading-relaxed">
+              We provide the expertise required to design, deploy, and maintain 
+              the region's most mission-critical network infrastructure.
             </p>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="container-wide pb-32">
-        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <StaggerItem 
-              key={service.title} 
-              className="group bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-2xl hover:border-cyan/30 transition-all duration-300 relative overflow-hidden h-full flex flex-col"
-            >
-              <div className="absolute top-8 right-10 text-5xl font-black text-white/5 select-none transition-colors group-hover:text-cyan/5">
-                {service.code}
-              </div>
-              
-              <div className="w-14 h-14 bg-cyan/10 rounded-xl flex items-center justify-center mb-8 group-hover:bg-cyan/20 transition-colors">
-                <service.icon className="h-7 w-7 text-cyan" />
-              </div>
-
-              <div className="space-y-4 flex-grow">
-                <h3 className="text-2xl font-bold text-white tracking-tight">{service.title}</h3>
-                <p className="text-white/50 leading-relaxed">
-                  {service.description}
+      {/* Services Grid (Alternating) */}
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, i) => (
+              <div key={service.title} className="group relative bg-background border border-border p-12 rounded-[48px] hover:border-primary transition-all duration-500 flex flex-col h-full shadow-2xl shadow-black/[0.02]">
+                <div className="w-20 h-20 bg-secondary flex items-center justify-center rounded-[24px] text-primary mb-10 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500">
+                  <service.icon className="w-10 h-10" />
+                </div>
+                <h3 className="text-3xl font-black tracking-tighter uppercase mb-6 leading-tight">{service.title}</h3>
+                <p className="text-muted-foreground font-medium mb-10 leading-relaxed flex-grow">
+                  {service.desc}
                 </p>
+                <div className="space-y-4 mb-12">
+                  {service.features.map(f => (
+                    <div key={f} className="flex items-center space-x-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                      <span className="text-xs font-black uppercase tracking-widest opacity-60">{f}</span>
+                    </div>
+                  ))}
+                </div>
+                <Button asChild variant="ghost" className="w-fit p-0 h-auto font-black uppercase tracking-[0.2em] text-[10px] text-primary hover:bg-transparent group/btn">
+                  <Link href="/contact" className="flex items-center">
+                    Initiate protocol <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                  </Link>
+                </Button>
               </div>
-
-              <div className="mt-10 pt-8 border-t border-white/5 flex items-center justify-between">
-                <span className="text-[10px] font-bold text-white/20 uppercase tracking-widest">Service Item</span>
-                <Link href="/contact" className="h-10 w-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 group-hover:border-cyan group-hover:text-cyan transition-all">
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
-      </section>
-
-      {/* CTA Section */}
-      <section className="container-wide">
-        <div className="bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-[32px] p-12 md:p-20 text-center space-y-10 relative overflow-hidden">
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-cyan/10 blur-[100px] rounded-full" />
-          
-          <FadeIn className="space-y-6">
-            <h2 className="text-4xl md:text-6xl font-black text-white leading-tight">
-              Need a Customized Service Plan?
-            </h2>
-            <p className="text-lg text-white/50 max-w-2xl mx-auto">
-              Our engineering team is ready to discuss your specific infrastructure requirements and build a custom support framework for your project.
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={0.2}>
-            <Button asChild size="lg" className="bg-cyan hover:bg-cyan/90 text-navy font-bold h-14 px-10 rounded-lg cyan-glow">
-              <Link href="/contact">Talk to an Engineer</Link>
-            </Button>
-          </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
+
+      {/* Industrial Excellence (Dark) */}
+      <section className="py-32 bg-navy text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-glow/5 to-transparent" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+            <div>
+              <h2 className="text-[10px] font-black uppercase tracking-[0.5em] text-cyan-glow mb-8">Performance Metrics</h2>
+              <h3 className="text-4xl md:text-7xl font-black tracking-tighter leading-[0.9] mb-12">
+                BUILT FOR <br /> <span className="text-cyan-glow italic">SCALE</span>
+              </h3>
+              <p className="text-xl opacity-70 leading-relaxed font-medium mb-16 max-w-xl">
+                Our infrastructure services are designed to support massive-scale deployments 
+                with zero-compromise on quality or schedule.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
+                <Metric icon={Zap} value="99.9%" label="Reliability Rate" />
+                <Metric icon={Cpu} value="24/7" label="Active Support" />
+              </div>
+            </div>
+            <div className="bg-white/5 border border-white/10 rounded-[48px] p-12 backdrop-blur-xl relative group overflow-hidden">
+              <div className="absolute -right-24 -bottom-24 w-64 h-64 bg-cyan-glow/10 blur-[80px] rounded-full group-hover:scale-150 transition-transform duration-700" />
+              <div className="space-y-12 relative z-10">
+                <div className="flex items-start space-x-8">
+                  <div className="w-16 h-16 bg-cyan-glow/10 rounded-2xl flex items-center justify-center text-cyan-glow shrink-0">
+                    <Server className="w-8 h-8" />
+                  </div>
+                  <div>
+                    <h4 className="text-2xl font-black tracking-tighter uppercase mb-4">Enterprise Grade</h4>
+                    <p className="opacity-60 font-medium">We deliver infrastructure that handles multi-petabyte data transfers and Tier-4 data center requirements.</p>
+                  </div>
+                </div>
+                <div className="h-px bg-white/10 w-full" />
+                <div className="flex items-start space-x-8">
+                  <div className="w-16 h-16 bg-cyan-glow/10 rounded-2xl flex items-center justify-center text-cyan-glow shrink-0">
+                    <ShieldCheck className="w-8 h-8" />
+                  </div>
+                  <div>
+                    <h4 className="text-2xl font-black tracking-tighter uppercase mb-4">Secure Sourcing</h4>
+                    <p className="opacity-60 font-medium">Full traceability on every SKU and official warranty support from global tier-1 manufacturers.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-24 container mx-auto px-4">
+        <div className="bg-primary rounded-[48px] p-12 md:p-24 text-primary-foreground text-center relative overflow-hidden group shadow-2xl">
+          <h2 className="text-4xl md:text-7xl font-black tracking-tighter mb-12 relative z-10 uppercase">
+            Start Your <span className="italic">Project</span>
+          </h2>
+          <Button asChild size="lg" variant="secondary" className="rounded-full h-16 px-12 font-black uppercase tracking-widest text-sm relative z-10 transition-all hover:scale-105">
+            <Link href="/contact">Talk to an Engineer</Link>
+          </Button>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+function Metric({ icon: Icon, value, label }: { icon: any; value: string; label: string }) {
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center space-x-4">
+        <Icon className="w-6 h-6 text-cyan-glow" />
+        <span className="text-4xl font-black tracking-tighter">{value}</span>
+      </div>
+      <p className="text-[10px] font-black uppercase tracking-[0.2em] opacity-40">{label}</p>
     </div>
   )
 }
